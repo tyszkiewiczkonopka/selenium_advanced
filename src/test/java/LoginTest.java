@@ -1,0 +1,19 @@
+import models.User;
+import models.UserFactory;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
+import pages.SignInPage;
+import providers.UrlProvider;
+
+public class LoginTest extends BaseTest {
+    static UserFactory userFactory;
+    SignInPage signInPage;
+
+    @Test
+    void test() {
+        userFactory = new UserFactory(new User.UserBuilder());
+        driver.get(UrlProvider.SIGN_IN);
+        signInPage.createRandomUser();
+    }
+
+}

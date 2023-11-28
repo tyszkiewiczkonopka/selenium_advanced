@@ -1,0 +1,34 @@
+browsers:
+  CHROME:
+    startMaximized: true
+    headless: false
+    disableExtensions: true
+    ignoreZoomSetting: false
+    active: true
+
+  FIREFOX:
+    startMaximized: true
+    headless: false
+    disableExtensions: true
+    ignoreZoomSetting: false
+    active: false
+
+  IE:
+    startMaximized: false
+    headless: false
+    disableExtensions: false
+    ignoreZoomSetting: true
+    active: false
+
+  EDGE:
+    startMaximized: true
+    headless: false
+    disableExtensions: true
+    ignoreZoomSetting: false
+    active: false
+
+user:
+  firstName: Miranda
+  lastName: Flores
+  email: miranda.flores@gmail.com
+  password: enhorabuena
