@@ -7,11 +7,11 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-public class SignInPage {
-    static UserFactory userFactory;
-    public SignInPage(WebDriver driver){
-        PageFactory.initElements(driver, this);
+public class SignInPage extends BasePage {
+    public SignInPage(WebDriver driver) {
+        super(driver);
     }
+    static UserFactory userFactory = new UserFactory(new User.UserBuilder());
     @FindBy(name = "firstname")
     private WebElement firstNameInput;
     @FindBy (name = "lastname")
@@ -20,6 +20,7 @@ public class SignInPage {
     private WebElement emailInput;
     @FindBy(name = "password")
     private WebElement passwordInput;
+
 
     public void createRandomUser(){
         User randomUser = userFactory.getRandomUser().build();

@@ -8,7 +8,7 @@ browsers:
 
   CHROME:
     startMaximized: true
-    headless: false
+    headless: true
     disableExtensions: true
     ignoreZoomSetting: false
     active: true
@@ -27,8 +27,8 @@ browsers:
     ignoreZoomSetting: false
     active: false
 
-user:
-  firstName: Miranda
-  lastName: Flores
-  email: miranda.flores@gmail.com
-  password: enhorabuena
+#user:
+#  firstName: Miranda
+#  lastName: Flores
+#  email: miranda.flores@gmail.com
+#  password: enhorabuena

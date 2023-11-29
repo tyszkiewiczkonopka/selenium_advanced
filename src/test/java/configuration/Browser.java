@@ -12,16 +12,6 @@ public class Browser {
     private BrowserType browserType;
     private boolean active;
 
-    public BrowserType getBrowserType() {
-        return browserType;
-    }
-
-    public Browser setBrowserType(BrowserType browserType) {
-        this.browserType = browserType;
-
-        return this;
-    }
-
     public boolean isActive() {
         return active;
     }
@@ -36,6 +26,13 @@ public class Browser {
         return properties;
     }
 
+    public BrowserType getBrowserType() {
+        return browserType;
+    }
 
+    public Browser setBrowserType(BrowserType browserType) {
+        this.browserType = browserType;
+        return this;
+    }
 }
 

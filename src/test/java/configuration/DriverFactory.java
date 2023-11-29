@@ -14,10 +14,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Optional;
 
-import static configuration.BrowserType.CHROME;
-
 public class DriverFactory {
-
     private static final String CONFIGURATION_FILE_PATH = "src/test/resources/configuration.yml";
 
     public static Browser getActiveBrowser() {
@@ -40,10 +37,10 @@ public class DriverFactory {
 
     public static WebDriver createDriver() {
         Browser activeBrowser = getActiveBrowser();
-        return createDriver(activeBrowser);
+        return getDriverFromActiveBrowser(activeBrowser);
     }
 
-    private static WebDriver createDriver(Browser activeBrowser) {
+    private static WebDriver getDriverFromActiveBrowser(Browser activeBrowser) {
         if (activeBrowser == null) {
             throw new IllegalArgumentException("Browser name cannot be null.");
         }
