@@ -5,24 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a3b19175-a19b-4249-b493-6ce9c5535abe" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/Main.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/BaseTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/LoginTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/configuration/Browser.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/configuration/Config.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/configuration/DriverFactory.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/models/User.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/models/UserFactory.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/pages/SignInPage.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/providers/UrlProvider.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/resources/configuration.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/resources/logback.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/configuration/BrowserType.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/configuration/Browser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/configuration/Browser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/configuration/Config.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/configuration/Config.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/configuration/DriverFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/configuration/DriverFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/models/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/models/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/resources/configuration.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/configuration.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

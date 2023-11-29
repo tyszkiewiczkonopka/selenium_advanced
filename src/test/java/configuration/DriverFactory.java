@@ -14,14 +14,20 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Optional;
 
+import static configuration.BrowserType.CHROME;
+
 public class DriverFactory {
 
     private static final String CONFIGURATION_FILE_PATH = "src/test/resources/configuration.yml";
+
     public static Browser getActiveBrowser() {
         ObjectMapper mapper = new ObjectMapper(new YAMLFactory());
         try {
             Config config = mapper.readValue(new File(CONFIGURATION_FILE_PATH), Config.class);
-            Optional<Browser> activeBrowser = config.getBrowsers().values().stream()
+            Optional<Browser> activeBrowser = config.getBrowsers().entrySet().stream()
+                    .map((singleBrowser) -> {
+                        return singleBrowser.getValue().setBrowserType(singleBrowser.getKey());
+                    })
                     .filter(Browser::isActive)
                     .findFirst();
 
@@ -31,16 +37,18 @@ public class DriverFactory {
             throw new RuntimeException("Error reading YAML file: " + e.getMessage());
         }
     }
+
     public static WebDriver createDriver() {
         Browser activeBrowser = getActiveBrowser();
         return createDriver(activeBrowser);
     }
+
     private static WebDriver createDriver(Browser activeBrowser) {
         if (activeBrowser == null) {
             throw new IllegalArgumentException("Browser name cannot be null.");
         }
 
-        return switch (activeBrowser) {
+        return switch (activeBrowser.getBrowserType()) {
             case CHROME -> createChromeDriver();
             case FIREFOX -> createFirefoxDriver();
             case IE -> createInternetExplorerDriver();

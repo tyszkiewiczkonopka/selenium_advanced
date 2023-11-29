@@ -8,16 +8,15 @@ import java.util.Map;
 
 @Getter
 public class Config {
-    private Map<String, Browser> browsers;
-    private User.UserBuilder user;
+    private Map<BrowserType, Browser> browsers;
+    private User user;
 
     public Config() {
     }
-    public Map<String, Browser> getBrowsers() {
+
+    public Map<BrowserType, Browser> getBrowsers() {
         return browsers;
     }
-
-
 
 
 }

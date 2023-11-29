@@ -1,17 +1,17 @@
 browsers:
-  CHROME:
-    startMaximized: true
-    headless: false
-    disableExtensions: true
-    ignoreZoomSetting: false
-    active: true
-
   FIREFOX:
     startMaximized: true
     headless: false
     disableExtensions: true
     ignoreZoomSetting: false
     active: false
+
+  CHROME:
+    startMaximized: true
+    headless: false
+    disableExtensions: true
+    ignoreZoomSetting: false
+    active: true
 
   IE:
     startMaximized: false
