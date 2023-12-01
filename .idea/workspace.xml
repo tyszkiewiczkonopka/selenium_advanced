@@ -4,19 +4,19 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a3b19175-a19b-4249-b493-6ce9c5535abe" name="Changes" comment="commit">
-      <change afterPath="$PROJECT_DIR$/src/test/java/SearchTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/components/SearchInputComponent.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/pages/BasePage.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/pages/HomePage.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/pages/SearchResultsPage.java" afterDir="false" />
+    <list default="true" id="a3b19175-a19b-4249-b493-6ce9c5535abe" name="Changes" comment="Add first Search test, work on the second one">
+      <change afterPath="$PROJECT_DIR$/src/test/java/pages/CategoryPage.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/pages/components/HeaderMenuComponent.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/pages/components/ProductMiniatureComponent.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/tests/categories/CategoriesTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/BaseTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/BaseTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/LoginTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/LoginTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/configuration/Browser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/configuration/Browser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/configuration/DriverFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/configuration/DriverFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/pages/SignInPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/pages/SignInPage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/resources/configuration.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/configuration.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/BaseTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/tests/BaseTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/LoginTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/tests/LoginTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/SearchTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/tests/search/SearchTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/components/SearchInputComponent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/pages/components/SearchInputComponent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/pages/BasePage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/pages/BasePage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/pages/HomePage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/pages/HomePage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/providers/UrlProvider.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/providers/UrlProvider.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -58,12 +58,50 @@
       <recent name="C:\Users\mtyszkiewicz\IdeaProjects\selenium_advanced\src\test\resources" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.SearchTest.test_written_into_search_field_should_be_found_among_dropdown_results">
-    <configuration name="LoginTest.test" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="JUnit.CategoriesTest.verifySubcategoryNamesAfterEnteringCategories">
+    <configuration name="CategoriesTest.categoriesName" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="selenium_advanced" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="LoginTest" />
-      <option name="METHOD_NAME" value="test" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="tests.categories.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="tests.categories" />
+      <option name="MAIN_CLASS_NAME" value="tests.categories.CategoriesTest" />
+      <option name="METHOD_NAME" value="categoriesName" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="CategoriesTest.subcategories_check" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="selenium_advanced" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="tests.categories.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="tests.categories" />
+      <option name="MAIN_CLASS_NAME" value="tests.categories.CategoriesTest" />
+      <option name="METHOD_NAME" value="subcategories_check" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="CategoriesTest.verifySubcategoryNamesAfterEnteringCategories" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="selenium_advanced" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="tests.categories.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="tests.categories" />
+      <option name="MAIN_CLASS_NAME" value="tests.categories.CategoriesTest" />
+      <option name="METHOD_NAME" value="verifySubcategoryNamesAfterEnteringCategories" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -71,8 +109,8 @@
     </configuration>
     <configuration name="SearchTest.search" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="selenium_advanced" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="SearchTest" />
+      <option name="PACKAGE_NAME" value="tests.search" />
+      <option name="MAIN_CLASS_NAME" value="tests.search.SearchTest" />
       <option name="METHOD_NAME" value="search" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
@@ -81,8 +119,8 @@
     </configuration>
     <configuration name="SearchTest.test_written_into_search_field_should_be_found_among_dropdown_results" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="selenium_advanced" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="SearchTest" />
+      <option name="PACKAGE_NAME" value="tests.search" />
+      <option name="MAIN_CLASS_NAME" value="tests.search.SearchTest" />
       <option name="METHOD_NAME" value="test_written_into_search_field_should_be_found_among_dropdown_results" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
@@ -91,9 +129,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.CategoriesTest.verifySubcategoryNamesAfterEnteringCategories" />
+        <item itemvalue="JUnit.CategoriesTest.subcategories_check" />
+        <item itemvalue="JUnit.CategoriesTest.categoriesName" />
         <item itemvalue="JUnit.SearchTest.test_written_into_search_field_should_be_found_among_dropdown_results" />
         <item itemvalue="JUnit.SearchTest.search" />
-        <item itemvalue="JUnit.LoginTest.test" />
       </list>
     </recent_temporary>
   </component>
@@ -106,6 +146,15 @@
       <option name="presentableId" value="Default" />
       <updated>1700737715859</updated>
     </task>
+    <task id="LOCAL-00001" summary="Add first Search test, work on the second one">
+      <option name="closed" value="true" />
+      <created>1701272469817</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1701272469817</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -118,5 +167,20 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Add first Search test, work on the second one" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add first Search test, work on the second one" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/test/java/pages/components/HeaderMenuComponent.java</url>
+          <line>100</line>
+          <option name="timeStamp" value="19" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

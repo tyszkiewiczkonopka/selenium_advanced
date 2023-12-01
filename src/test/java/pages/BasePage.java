@@ -9,9 +9,9 @@ import java.time.Duration;
 
 
 public class BasePage {
-    WebDriver driver;
-    Actions actions;
-    WebDriverWait defaultWait;
+    protected WebDriver driver;
+    protected Actions actions;
+    protected WebDriverWait defaultWait;
     public BasePage(WebDriver driver){
         init(driver);
         PageFactory.initElements(driver,this);

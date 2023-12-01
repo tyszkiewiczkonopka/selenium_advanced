@@ -1,3 +1,5 @@
+package tests;
+
 import models.User;
 import models.UserFactory;
 import org.junit.jupiter.api.BeforeEach;
@@ -11,16 +13,14 @@ public class LoginTest extends BaseTest {
 
     @BeforeEach
     public void setUpLoginTest() {
-        signInPage = new SignInPage(driver);
+        signInPage = new SignInPage(BaseTest.driver);
     }
 
     @Test
     void test() {
         userFactory = new UserFactory(new User.UserBuilder());
-        driver.get(UrlProvider.SIGN_IN);
+        BaseTest.driver.get(UrlProvider.SIGN_IN);
         signInPage.createRandomUser();
-
-
     }
 
 }

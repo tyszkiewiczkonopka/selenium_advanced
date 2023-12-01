@@ -1,14 +1,19 @@
-package components;
+package pages.components;
 
 import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import pages.BasePage;
 
+import java.time.Duration;
 import java.util.List;
 @Slf4j
 public class SearchInputComponent extends BasePage {
+    WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+
     public SearchInputComponent(WebDriver driver) {
         super(driver);
     }
@@ -33,6 +38,7 @@ public class SearchInputComponent extends BasePage {
     }
 
     public boolean isTextInSearchResultsDropdown(String productName) {
+        wait.until(ExpectedConditions.visibilityOf(searchResultsDropdown));
         for(WebElement result : searchResults){
             String searchedText = result.getText();
             if (searchedText.contains(productName)) {

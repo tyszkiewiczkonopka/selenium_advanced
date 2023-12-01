@@ -1,6 +1,6 @@
 package pages;
 
-import components.SearchInputComponent;
+import pages.components.SearchInputComponent;
 import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
