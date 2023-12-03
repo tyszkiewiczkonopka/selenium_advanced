@@ -9,8 +9,13 @@ public class ProductMiniatureComponent extends BasePage {
     public ProductMiniatureComponent(WebDriver driver) {
         super(driver);
     }
-    @FindBy(css = "product-miniature")
-    private WebElement productMiniature;
+
+    @FindBy(css = ".product-price-and-shipping")
+    private WebElement productPrice;
+
+    public WebElement getProductPrice(){
+        return productPrice;
+    }
 
 
 }

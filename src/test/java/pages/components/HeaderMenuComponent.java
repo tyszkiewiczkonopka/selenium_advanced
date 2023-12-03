@@ -1,39 +1,40 @@
 package pages.components;
 
 import lombok.extern.slf4j.Slf4j;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.WebDriverWait;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import pages.BasePage;
 
-import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
 
 @Slf4j
 public class HeaderMenuComponent extends BasePage {
+    @FindBy(css = "[data-depth=\"0\"] > .category")
+    private List<WebElement> menuCategories;
 
     public HeaderMenuComponent(WebDriver driver) {
         super(driver);
     }
 
-    @FindBy(id = "top-menu")
-    private WebElement topMenu;
-    @FindBy(css = ".category .dropdown-item:not(.dropdown-submenu)")
-    private List<WebElement> menuCategories;
-    @FindBy(css = ".category .dropdown-submenu")
-    private List<WebElement> menuSubcategories;
-
-
-    public List<WebElement> getAllCategoryElements() {
-        return menuCategories;
+    public List<String> getAllCategoryIds() {
+        return menuCategories.stream()
+                .map(category -> category.getAttribute("id"))
+                .toList();
     }
 
-    public List<WebElement> getSubcategoryElements() {
-        return menuSubcategories;
+    public List<String> getSubcategoryIds(WebElement category) {
+        return category
+                .findElements(By.cssSelector(".category"))
+                .stream()
+                .map((subcategory) -> subcategory.getAttribute("id"))
+                .toList();
     }
+
 
     public List<String> getAllCategoryNames() {
         List<String> categoryNames = new ArrayList<>();
@@ -44,40 +45,18 @@ public class HeaderMenuComponent extends BasePage {
         return categoryNames;
     }
 
-
-    public void chooseMenuCategory(String category) {
+    public void chooseMenuCategory(String categoryName) {
         WebElement categoryElement = menuCategories.stream()
-                .filter(element -> element.getText().equalsIgnoreCase(category))
+                .filter(element -> element.getText().equalsIgnoreCase(categoryName))
                 .findFirst()
-                .orElseThrow(() -> new NoSuchElementException("Category not found: " + category));
+                .orElseThrow(() -> new NoSuchElementException("Category not found: " + categoryName));
         categoryElement.click();
     }
 
-
-
-    public List<String> getAllSubcategoryNames() {
-        List<String> subcategoryNames = new ArrayList<>();
-        for (WebElement subcategoryName : menuSubcategories) {
-            String subcategoryNameText = subcategoryName.getText().toUpperCase();
-            subcategoryNames.add(subcategoryNameText);
-        }
-        return subcategoryNames;
-    }
-
     public void hoverOverMenuCategory(WebElement menuCategory) {
-        actions.moveToElement(menuCategory).perform();
+        actions.moveToElement(menuCategory).build().perform();
     }
 
-    public void hoverOverSubmenuCategory(WebElement menuCategory, WebElement subcategory) {
-        hoverOverMenuCategory(menuCategory);
-        actions.moveToElement(subcategory).perform();
-    }
-
-    public void chooseSubcategory(WebElement menuCategory, WebElement subcategory) {
-        hoverOverMenuCategory(menuCategory);
-        actions.moveToElement(subcategory).perform();
-        subcategory.click();
-    }
 
 
 }

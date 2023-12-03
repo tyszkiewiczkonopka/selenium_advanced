@@ -23,7 +23,7 @@ public class HomePage extends BasePage {
     @FindBy(css = ".products .product")
     public List<WebElement> products;
 
-    public String enterRandomProductNameIntoSearchField() {
+    public String randomProductNameIntoSearchField() {
         if (products.isEmpty()) {
             throw new IllegalStateException("The products list is empty. Cannot select a random product.");
         }
