@@ -2,20 +2,16 @@ package tests.categories;
 
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import pages.CategoryPage;
-import pages.components.FiltersSideMenuComponent;
-import pages.components.HeaderMenuComponent;
+import pages.components.filters.FiltersSideMenuComponent;
+import pages.components.header.HeaderMenuComponent;
 import pages.components.ProductMiniatureComponent;
 import providers.UrlProvider;
 import tests.BaseTest;
 
-import java.time.Duration;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;

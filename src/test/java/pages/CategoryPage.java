@@ -1,6 +1,7 @@
 package pages;
 
 import lombok.extern.slf4j.Slf4j;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -40,8 +41,8 @@ public class CategoryPage extends BasePage {
 
     public boolean areProductsWithinFilteredPriceRange(Double minTargetPrice, Double maxTargetPrice) {
         for (WebElement product : productMiniatures) {
-            WebElement productPriceElement = productMiniatureComponent.getProductPrice();
-            String productPriceText = productPriceElement.getText().replace("$", "");
+            String productPriceElement = productMiniatureComponent.getProductPrice();
+            String productPriceText = productPriceElement.replace("$", "");
             try {
                 Double productPrice = Double.valueOf(productPriceText);
 
@@ -56,4 +57,5 @@ public class CategoryPage extends BasePage {
         }
         return false;
     }
+
 }

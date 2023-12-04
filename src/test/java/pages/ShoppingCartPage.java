@@ -1,32 +1,20 @@
 package pages;
 
 import org.openqa.selenium.WebDriver;
-import models.ShoppingCartItem;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 
-import java.util.ArrayList;
 import java.util.List;
 
-public class ShoppingCartPage extends BasePage{
-    private List<ShoppingCartItem> shoppingCartItems;
+public class ShoppingCartPage extends BasePage {
 
 
     public ShoppingCartPage(WebDriver driver) {
         super(driver);
-        this.shoppingCartItems = new ArrayList<>();
-
     }
 
-    public void addToCart(String productName, double price, int quantityToAdd) {
-        for (ShoppingCartItem item : shoppingCartItems) {
-            if (item.getProductName().equals(productName)) {
-                item.increaseProductQuantity(quantityToAdd);
-                return;
-            }
-        }
-
-        ShoppingCartItem newItem = new ShoppingCartItem(productName, price, quantityToAdd);
-        shoppingCartItems.add(newItem);
-    }
+    @FindBy(css = ".cart-items")
+    List<WebElement> shoppingCartItems;
 
 
 }

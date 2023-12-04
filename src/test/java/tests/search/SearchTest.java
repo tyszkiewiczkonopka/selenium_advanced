@@ -1,7 +1,7 @@
 package tests.search;
 
 import org.junit.jupiter.api.Test;
-import pages.components.SearchInputComponent;
+import pages.components.header.SearchInputComponent;
 import lombok.extern.slf4j.Slf4j;
 import pages.HomePage;
 import pages.SearchResultsPage;

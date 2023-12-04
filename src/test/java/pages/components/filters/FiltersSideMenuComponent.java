@@ -1,4 +1,4 @@
-package pages.components;
+package pages.components.filters;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;

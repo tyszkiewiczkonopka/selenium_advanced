@@ -2,11 +2,10 @@ package tests.categories;
 
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Test;
 import pages.CategoryPage;
-import pages.components.FilterPriceRangeComponent;
-import pages.components.FiltersSideMenuComponent;
+import pages.components.filters.FilterPriceRangeComponent;
+import pages.components.filters.FiltersSideMenuComponent;
 import providers.UrlProvider;
 import tests.BaseTest;
 
