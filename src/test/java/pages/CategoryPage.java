@@ -1,13 +1,14 @@
 package pages;
 
 import lombok.extern.slf4j.Slf4j;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import pages.components.ProductMiniatureComponent;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 @Slf4j
@@ -18,6 +19,7 @@ public class CategoryPage extends BasePage {
     private WebElement totalProductsCount;
     @FindBy(css = ".products .product-miniature")
     private List<WebElement> productMiniatures;
+
 
     public CategoryPage(WebDriver driver) {
         super(driver);
@@ -39,23 +41,25 @@ public class CategoryPage extends BasePage {
         return productMiniatures.size();
     }
 
-    public boolean areProductsWithinFilteredPriceRange(Double minTargetPrice, Double maxTargetPrice) {
+    public void areProductsWithinFilteredPriceRange(Double minTargetPrice, Double maxTargetPrice) {
         for (WebElement product : productMiniatures) {
-            String productPriceElement = productMiniatureComponent.getProductPrice();
+            String productPriceElement = String.valueOf(productMiniatureComponent.getProductPrice());
             String productPriceText = productPriceElement.replace("$", "");
             try {
                 Double productPrice = Double.valueOf(productPriceText);
 
                 if (productPrice >= minTargetPrice && productPrice <= maxTargetPrice) {
                     log.info("Product with price {} is in the specified range '{} - {}'.", productPrice, minTargetPrice, maxTargetPrice);
-                    return true;
+                    return;
                 }
             } catch (NumberFormatException e) {
                 log.warn("Invalid product price format: {}", productPriceText);
             }
 
         }
-        return false;
     }
+
+
+
 
 }

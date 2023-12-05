@@ -42,5 +42,9 @@ public class AddToCartPopupComponent extends BasePage {
         String subtotalProductsPrice = subtotalValue.getText();
         return Double.parseDouble(subtotalProductsPrice.replaceAll("[^\\d.]", ""));
     }
+    public double extractProductPriceFromPopup(){
+        String productPrice = getProductPrice().getText();
+        return Double.parseDouble(productPrice.replaceAll("[^\\d.]", ""));
+    }
 
 }

@@ -1,5 +1,6 @@
 package pages;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -14,6 +15,8 @@ public class ProductPage extends BasePage {
     private WebElement quantityInput;
     @FindBy(css = ".btn.add-to-cart")
     private WebElement addToCartButton;
+    @FindBy(css = ".h5.product-price span")
+    private WebElement price;
 
     public void changeQuantity(String quantity) {
         quantityInput.clear();
@@ -24,7 +27,10 @@ public class ProductPage extends BasePage {
         JavascriptExecutor js = (JavascriptExecutor) driver;
         return (String) js.executeScript("return arguments[0].value", quantityInput);
     }
-
+    public double extractProductPriceFromProductPage() {
+        String productPriceText = price.getText();
+        return Double.parseDouble(productPriceText.replaceAll("[^\\d.]", ""));
+    }
     public void addToCart() {
         addToCartButton.click();
 

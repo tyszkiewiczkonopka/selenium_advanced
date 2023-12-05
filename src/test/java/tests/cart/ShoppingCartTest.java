@@ -37,31 +37,30 @@ public class ShoppingCartTest extends BaseTest {
     }
 
     @Test
-    void productAdded() {
+    void product_added_to_the_cart_should_have_the_same_data_in_popup_summary_as_on_product_page() {
         driver.get(UrlProvider.CATEGORY_ART);
         String desiredProductName = "THE BEST IS YET POSTER";
-        String desiredProductQuantityText = "3";
-        String expectedProductPriceText = productMiniatureComponent.getProductPrice();
-        double productPrice = getPriceFromText(expectedProductPriceText);
-        int productQuantity = getQuantityFromText(desiredProductQuantityText);
-
         openProductView(desiredProductName);
-        setProductQuantity(desiredProductQuantityText);
+
+        double expectedProductPrice = productPage.extractProductPriceFromProductPage();
+        int expectedProductQuantity = 3;
+
+        setProductQuantity(String.valueOf(expectedProductQuantity));
         productPage.addToCart();
         verifyProductNameInPopup(desiredProductName);
-        verifyProductPriceInPopup(expectedProductPriceText);
-        verifyProductQuantityInPopup(desiredProductQuantityText);
-        verifyCartItemCountInPopup(desiredProductQuantityText);
-        verifyProductsTotalPrice(productPrice, productQuantity);
-        verifyMinicartProductsQuantity(desiredProductQuantityText);
+        verifyProductPriceInPopup(expectedProductPrice);
+        verifyProductsTotalPrice(expectedProductPrice, expectedProductQuantity);
+        verifyProductQuantityInPopup(expectedProductQuantity);
+        verifyCartItemCountInPopup(expectedProductQuantity);
+        verifyMinicartProductsQuantity(expectedProductQuantity);
     }
 
 
-    private void verifyMinicartProductsQuantity(String desiredProductQuantity) {
+    private void verifyMinicartProductsQuantity(int expectedProductQuantity) {
         String minicartItemsNumber = minicartComponent.getCartItemsNumber();
-        assertThat(minicartItemsNumber).isEqualTo(desiredProductQuantity);
-        log.info("Actual minicart items count: " + minicartItemsNumber);
-        log.info("Expected minicart items count: " + desiredProductQuantity);
+        assertThat(minicartItemsNumber).isEqualTo(String.valueOf(expectedProductQuantity));
+        log.info("Actual number of items in minicart: " + minicartItemsNumber);
+        log.info("Expected number of items in minicart: " + expectedProductQuantity);
         log.info("***********************************************************");
     }
 
@@ -69,50 +68,50 @@ public class ShoppingCartTest extends BaseTest {
         Double actualTotalPrice = addToCartPopupComponent.extractProductTotal();
         Double expectedTotalPrice = price * quantity;
         assertThat(actualTotalPrice).isEqualTo(expectedTotalPrice);
-        log.info("Actual products total price: " + actualTotalPrice);
-        log.info("Expected products total price: " + expectedTotalPrice);
+        log.info("Actual products subtotal: " + actualTotalPrice);
+        log.info("Expected products subtotal: " + expectedTotalPrice);
         log.info("***********************************************************");
     }
 
-    private void verifyCartItemCountInPopup(String desiredProductQuantity) {
+    private void verifyCartItemCountInPopup(int expectedProductQuantity) {
         int actualCartItemCount = addToCartPopupComponent.extractCartItemCount();
-        assertThat(actualCartItemCount).isEqualTo(Integer.parseInt(desiredProductQuantity));
-        log.info("Actual cart items count: " + actualCartItemCount);
-        log.info("Expected cart items count: " + desiredProductQuantity);
+        assertThat(actualCartItemCount).isEqualTo(expectedProductQuantity);
+        log.info("Actual number of items in cart: " + actualCartItemCount);
+        log.info("Expected number of items in cart: " + expectedProductQuantity);
         log.info("***********************************************************");
     }
 
-    private void verifyProductQuantityInPopup(String desiredProductQuantity) {
-        String actualProductQuantity = String.valueOf(addToCartPopupComponent.extractProductQuantity());
-        assertThat(actualProductQuantity).isEqualTo(desiredProductQuantity);
-        log.info("Actual product quantity: " + actualProductQuantity);
-        log.info("Expected product quantity: " + desiredProductQuantity);
+    private void verifyProductQuantityInPopup(int expectedProductQuantity) {
+        int actualProductQuantity = addToCartPopupComponent.extractProductQuantity();
+        assertThat(actualProductQuantity).isEqualTo(expectedProductQuantity);
+        log.info("Actual product quantity in Pop-up: " + actualProductQuantity);
+        log.info("Expected product quantity in Pop-up: " + expectedProductQuantity);
         log.info("***********************************************************");
     }
 
-    private void verifyProductPriceInPopup(String desiredProductPrice) {
-        String actualProductPrice = addToCartPopupComponent.getProductPrice().getText();
-        assertThat(actualProductPrice).isEqualTo(desiredProductPrice);
-        log.info("Actual product price: " + actualProductPrice);
-        log.info("Expected product price: " + desiredProductPrice);
+    private void verifyProductPriceInPopup(double expectedProductPrice) {
+        double actualProductPrice = addToCartPopupComponent.extractProductPriceFromPopup();
+        assertThat(actualProductPrice).isEqualTo(expectedProductPrice);
+        log.info("Actual product price in Pop-up: " + actualProductPrice);
+        log.info("Expected product price in Pop-up: " + expectedProductPrice);
         log.info("***********************************************************");
     }
 
-    private void verifyProductNameInPopup(String desiredProductName) {
+    private void verifyProductNameInPopup(String expectedProductName) {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         wait.until(ExpectedConditions.attributeContains(By.id("blockcart-modal"), "class", "modal fade in"));
         String actualProductName = addToCartPopupComponent.getProductName();
-        assertThat(actualProductName).isEqualTo(desiredProductName);
-        log.info("Actual product name: " + actualProductName);
-        log.info("Expected product name: " + desiredProductName);
+        assertThat(actualProductName).isEqualTo(expectedProductName);
+        log.info("Actual product name in Pop-up: " + actualProductName);
+        log.info("Expected product name in Pop-up: " + expectedProductName);
         log.info("***********************************************************");
     }
 
     private void setProductQuantity(String desiredProductQuantity) {
-        productPage.changeQuantity("3");
+        productPage.changeQuantity(desiredProductQuantity);
         int currentQuantity = Integer.parseInt(productPage.getCurrentQuantity());
-        log.info("Actual product quantity: " + currentQuantity);
-        log.info("Expected product quantity: " + desiredProductQuantity);
+        log.info("Actual product quantity on Product Page: " + currentQuantity);
+        log.info("Expected product quantity on Product Page: " + desiredProductQuantity);
         log.info("***********************************************************");
     }
 
@@ -123,13 +122,5 @@ public class ShoppingCartTest extends BaseTest {
         log.info("Actual title: " + actualTitle);
         log.info("Expected title: " + desiredProductName);
         log.info("***********************************************************");
-    }
-
-    private double getPriceFromText(String expectedProductPrice) {
-        return Double.parseDouble(expectedProductPrice.replaceAll("[^\\d.]+", ""));
-    }
-
-    private int getQuantityFromText(String desiredProductQuantity) {
-        return Integer.parseInt(desiredProductQuantity);
     }
 }
