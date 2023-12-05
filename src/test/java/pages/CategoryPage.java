@@ -7,14 +7,14 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import pages.components.ProductMiniatureComponent;
 
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
+import java.util.Random;
 
 @Slf4j
 public class CategoryPage extends BasePage {
 
     ProductMiniatureComponent productMiniatureComponent;
+    ProductPage productPage;
     @FindBy(css = ".total-products p")
     private WebElement totalProductsCount;
     @FindBy(css = ".products .product-miniature")
@@ -24,6 +24,7 @@ public class CategoryPage extends BasePage {
     public CategoryPage(WebDriver driver) {
         super(driver);
         productMiniatureComponent = new ProductMiniatureComponent(driver);
+        productPage = new ProductPage(driver);
     }
 
     public String getOpenedCategoryTitle() {
@@ -59,7 +60,23 @@ public class CategoryPage extends BasePage {
         }
     }
 
+    public void addRandomProductToCart() {
+        WebElement randomProduct = selectRandomProduct();
+        String randomProductName = productMiniatureComponent.getProductNameFromMiniature(randomProduct);
+        productMiniatureComponent.openProductView(randomProductName);
+        productPage.addToCart();
+        driver.navigate().back();
+        log.info("Added product '{}' to the cart.", randomProductName);
+    }
 
+    public WebElement selectRandomProduct() {
+        if (productMiniatureComponent.getAllMiniatures().isEmpty()) {
+            throw new IllegalStateException("No products found on the page.");
+        }
 
+        Random random = new Random();
+        int randomIndex = random.nextInt(productMiniatureComponent.getAllMiniatures().size());
+        return productMiniatureComponent.getAllMiniatures().get(randomIndex);
+    }
 
 }

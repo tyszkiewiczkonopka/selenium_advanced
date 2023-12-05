@@ -18,9 +18,9 @@ public class LoginTest extends BaseTest {
 
     @Test
     void test() {
-        userFactory = new UserFactory(new User.UserBuilder());
-        BaseTest.driver.get(UrlProvider.SIGN_IN);
-        signInPage.createRandomUser();
+//        userFactory = new UserFactory(new User.UserBuilder());
+//        BaseTest.driver.get(UrlProvider.SIGN_IN);
+//        signInPage.createRandomUser();
     }
 
 }

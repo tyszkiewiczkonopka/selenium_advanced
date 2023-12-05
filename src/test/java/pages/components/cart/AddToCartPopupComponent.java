@@ -24,6 +24,8 @@ public class AddToCartPopupComponent extends BasePage {
     private WebElement totalPrice;
     @FindBy(css = ".subtotal.value")
     private WebElement subtotalValue;
+    @FindBy(css = ".cart-content-btn .btn-primary")
+    private WebElement proceedToCheckoutButton;
 
     public String getProductName(){
         return productName.getText();
@@ -45,6 +47,9 @@ public class AddToCartPopupComponent extends BasePage {
     public double extractProductPriceFromPopup(){
         String productPrice = getProductPrice().getText();
         return Double.parseDouble(productPrice.replaceAll("[^\\d.]", ""));
+    }
+    public void proceedToCheckout(){
+        proceedToCheckoutButton.click();
     }
 
 }

@@ -7,7 +7,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import pages.BasePage;
-import pages.CategoryPage;
+
+import java.util.List;
 
 @Getter
 @Slf4j
@@ -24,12 +25,17 @@ public class ProductMiniatureComponent extends BasePage {
     private WebElement productQuickView;
     @FindBy(css = "article.product-miniature img")
     private WebElement productImage;
+    @FindBy(css = ".product")
+    private List<WebElement> productMiniatures;
+    public List<WebElement> getAllMiniatures(){
+        return productMiniatures;
+    }
 
-    public String getProductName(){
+    public String getProductName() {
         return productTitle.getText();
     }
 
-    public void openProductView(String desiredProductName){
+    public void openProductView(String desiredProductName) {
         WebElement element = driver.findElement(By.linkText(desiredProductName));
         element.click();
     }
@@ -44,6 +50,18 @@ public class ProductMiniatureComponent extends BasePage {
 //        }
 //    }
 
+    public double extractProductPriceFromProductMiniature() {
+        String productPriceText = productPrice.getText();
+        productPriceText = productPriceText.replaceAll("\\.(?=.*\\.)", "");
 
+        try {
+            return Double.parseDouble(productPriceText);
+        } catch (NumberFormatException e) {
+            log.warn("Invalid product price format: {}", productPriceText);
+            throw e;
+        }    }
 
+    public String getProductNameFromMiniature(WebElement productMiniature) {
+        return productTitle.getText();
+    }
 }

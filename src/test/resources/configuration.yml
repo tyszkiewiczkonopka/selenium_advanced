@@ -27,8 +27,8 @@ browsers:
     ignoreZoomSetting: false
     active: false
 
-#user:
-#  firstName: Miranda
-#  lastName: Flores
-#  email: miranda.flores@gmail.com
-#  password: enhorabuena
+users:
+  - firstName: Miranda
+    lastName: Flores
+    email: miranda.flores@gmail.com
+    password: enhorabuena

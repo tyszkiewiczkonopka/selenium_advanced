@@ -9,8 +9,6 @@ public class CartProductLineComponent {
     private double price;
     private int quantity;
 
-
-
     public double getTotalProductLineCost() {
         return price * quantity;
     }
