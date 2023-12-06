@@ -1,12 +1,13 @@
 package tests;
 
-import models.User;
+import lombok.extern.slf4j.Slf4j;
 import models.UserFactory;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import pages.SignInPage;
 import providers.UrlProvider;
 
+@Slf4j
 public class LoginTest extends BaseTest {
     static UserFactory userFactory;
     SignInPage signInPage;
@@ -18,9 +19,9 @@ public class LoginTest extends BaseTest {
 
     @Test
     void test() {
-//        userFactory = new UserFactory(new User.UserBuilder());
-//        BaseTest.driver.get(UrlProvider.SIGN_IN);
-//        signInPage.createRandomUser();
+        userFactory = new UserFactory();
+        BaseTest.driver.get(UrlProvider.SIGN_IN);
+        signInPage.signInAsRegisteredUser();
     }
 
 }

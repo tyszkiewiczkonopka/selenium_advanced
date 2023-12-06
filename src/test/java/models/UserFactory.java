@@ -11,22 +11,35 @@ import java.util.List;
 import java.util.Random;
 
 public class UserFactory {
-    private final User.UserBuilder userBuilder;
-    Faker faker = new Faker();
     private final List<User> registeredUsers;
-    public UserFactory(User.UserBuilder userBuilder, List<User> registeredUsers) {
-        this.userBuilder = userBuilder;
-        this.registeredUsers = registeredUsers;
+    Faker faker = new Faker();
+
+    public UserFactory() {
+        this.registeredUsers = loadUsersFromConfigFile();
     }
-    public User.UserBuilder getRandomUser(){
-        return userBuilder
+
+    public static List<User> loadUsersFromConfigFile() {
+        ObjectMapper mapper = new ObjectMapper(new YAMLFactory());
+        try {
+            Config config = mapper.readValue(new File("src/test/resources/configuration.yml"), Config.class);
+            return config.getUsers();
+        } catch (IOException e) {
+            throw new RuntimeException("Error reading YAML file: " + e.getMessage());
+        }
+
+    }
+
+
+    public User getRandomUser() {
+        return new User.UserBuilder()
                 .setFirstName(faker.name().firstName())
                 .setLastName(faker.name().lastName())
                 .setEmail(faker.internet().emailAddress())
-                .setPassword(faker.internet().password());
-    };
+                .setPassword(faker.internet().password())
+                .build();
+    }
 
-    public User.UserBuilder getAlreadyRegisteredUser() {
+    public User getAlreadyRegisteredUser() {
         if (registeredUsers.isEmpty()) {
             throw new RuntimeException("No registered users found");
         }
@@ -34,20 +47,11 @@ public class UserFactory {
         Random random = new Random();
         User selectedUser = registeredUsers.get(random.nextInt(registeredUsers.size()));
 
-        return userBuilder
+        return new User.UserBuilder()
                 .setFirstName(selectedUser.getFirstName())
                 .setLastName(selectedUser.getLastName())
                 .setEmail(selectedUser.getEmail())
-                .setPassword(selectedUser.getPassword());
+                .setPassword(selectedUser.getPassword())
+                .build();
     }
-
-    public static List<User> loadUsersFromConfigFile(String filePath) {
-        ObjectMapper mapper = new ObjectMapper(new YAMLFactory());
-        try {
-            Config config = mapper.readValue(new File(filePath), Config.class);
-            return config.getUsers();
-        } catch (IOException e) {
-            throw new RuntimeException("Error reading YAML file: " + e.getMessage());
-        }
-
 }
