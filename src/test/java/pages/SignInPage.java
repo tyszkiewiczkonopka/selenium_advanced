@@ -32,14 +32,6 @@ public class SignInPage extends BasePage {
         passwordInput.sendKeys(randomUser.getPassword());
     }
 
-    public void signInAsRegisteredUser() {
-        User registeredUser = userFactory.getAlreadyRegisteredUser();
-
-        firstNameInput.sendKeys(registeredUser.getFirstName());
-        lastNameInput.sendKeys(registeredUser.getLastName());
-        emailInput.sendKeys(registeredUser.getEmail());
-        passwordInput.sendKeys(registeredUser.getPassword());
-    }
 
 
 }

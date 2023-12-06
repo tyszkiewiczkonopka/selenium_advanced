@@ -1,10 +1,9 @@
 package pages;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import java.util.List;
 
@@ -21,6 +20,8 @@ public class ShoppingCartPage extends BasePage {
     private WebElement cartItem;
     @FindBy(css = ".js-cart-line-product-quantity")
     private WebElement quantityInput;
+    @FindBy(css = ".cart-summary a")
+    private WebElement proceedToCheckoutButton;
 
 
 //    public void updateQuantityInCart(String productName, int totalQuantity) {
@@ -41,7 +42,7 @@ public class ShoppingCartPage extends BasePage {
 //    }
 
 
-//    public boolean isProductInCart(String productName) {
+    //    public boolean isProductInCart(String productName) {
 //        for (WebElement shoppingCartItem : shoppingCartItems) {
 //            String cartProductName = cartItem.getText();
 //            if (cartProductName.equals(productName)) {
@@ -55,4 +56,8 @@ public class ShoppingCartPage extends BasePage {
 //            JavascriptExecutor js = (JavascriptExecutor) driver;
 //            return (String) js.executeScript("return arguments[0].value", quantityInput);
 //    }
+    public void proceedToCheckout() {
+        defaultWait.until(ExpectedConditions.visibilityOf(proceedToCheckoutButton));
+        proceedToCheckoutButton.click();
+    }
 }

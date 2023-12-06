@@ -1,10 +1,15 @@
 package pages.components.cart;
 
 import lombok.Getter;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import pages.BasePage;
+
+import java.time.Duration;
 
 @Getter
 public class AddToCartPopupComponent extends BasePage {
@@ -24,7 +29,7 @@ public class AddToCartPopupComponent extends BasePage {
     private WebElement totalPrice;
     @FindBy(css = ".subtotal.value")
     private WebElement subtotalValue;
-    @FindBy(css = ".cart-content-btn .btn-primary")
+    @FindBy(css = ".cart-content-btn a")
     private WebElement proceedToCheckoutButton;
 
     public String getProductName(){
@@ -49,6 +54,8 @@ public class AddToCartPopupComponent extends BasePage {
         return Double.parseDouble(productPrice.replaceAll("[^\\d.]", ""));
     }
     public void proceedToCheckout(){
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait.until(ExpectedConditions.attributeContains(By.id("blockcart-modal"), "class", "modal fade in"));
         proceedToCheckoutButton.click();
     }
 
