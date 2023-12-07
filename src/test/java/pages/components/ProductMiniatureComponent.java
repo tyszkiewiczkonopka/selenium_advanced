@@ -27,7 +27,8 @@ public class ProductMiniatureComponent extends BasePage {
     private WebElement productImage;
     @FindBy(css = ".product")
     private List<WebElement> productMiniatures;
-    public List<WebElement> getAllMiniatures(){
+
+    public List<WebElement> getAllMiniatures() {
         return productMiniatures;
     }
 
@@ -39,16 +40,6 @@ public class ProductMiniatureComponent extends BasePage {
         WebElement element = driver.findElement(By.linkText(desiredProductName));
         element.click();
     }
-//    public double extractProductPrice(String desiredProductName){
-//        WebElement product = categoryPage.findProductByName(desiredProductName);
-//        if (product != null) {
-//            String productPriceText = productPrice.getText();
-//            return Double.parseDouble(productPriceText.replaceAll("[^\\d.]", ""));
-//        } else {
-//            log.error("Product not found with name: " + desiredProductName);
-//            return 0.0;
-//        }
-//    }
 
     public double extractProductPriceFromProductMiniature() {
         String productPriceText = productPrice.getText();
@@ -59,7 +50,8 @@ public class ProductMiniatureComponent extends BasePage {
         } catch (NumberFormatException e) {
             log.warn("Invalid product price format: {}", productPriceText);
             throw e;
-        }    }
+        }
+    }
 
     public String getProductNameFromMiniature(WebElement productMiniature) {
         return productTitle.getText();

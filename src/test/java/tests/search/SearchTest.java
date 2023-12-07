@@ -20,7 +20,7 @@ public class SearchTest extends BaseTest {
     @Test
     void randomly_chosen_product_should_be_found_by_its_name_in_search_results() {
         BaseTest.driver.get(UrlProvider.APP);
-        String productName = homePage.randomProductNameIntoSearchField();
+        String productName = homePage.writeRandomProductNameIntoSearchField();
         searchInputComponent.clickSearchButton();
 
         assertTrue(searchResultsPage.isProductInSearchResults(productName));

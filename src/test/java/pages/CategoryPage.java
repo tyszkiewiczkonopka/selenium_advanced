@@ -64,7 +64,7 @@ public class CategoryPage extends BasePage {
         WebElement randomProduct = selectRandomProduct();
         String randomProductName = productMiniatureComponent.getProductNameFromMiniature(randomProduct);
         productMiniatureComponent.openProductView(randomProductName);
-        productPage.addToCart();
+        productPage.clickAddToCart();
         driver.navigate().back();
         log.info("Added product '{}' to the cart.", randomProductName);
     }

@@ -4,22 +4,29 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a3b19175-a19b-4249-b493-6ce9c5535abe" name="Changes" comment="Modify user factory to include already registered users (to be continued)">
-      <change afterPath="$PROJECT_DIR$/src/test/java/models/Address.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/models/AddressFactory.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/pages/OrderConfirmationPage.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/pages/account/MyAccountPage.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/pages/account/NewAddressPage.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/pages/account/OpenOrderDetailsPage.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/pages/account/OrderHistoryPage.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/pages/account/PlacedOrderDetailsPage.java" afterDir="false" />
+    <list default="true" id="a3b19175-a19b-4249-b493-6ce9c5535abe" name="Changes" comment="Add checkout test (to be continued)">
+      <change afterPath="$PROJECT_DIR$/src/test/java/models/Cart.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/models/CartLine.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/pages/LoginPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/pages/LoginPage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/models/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/models/Product.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/models/ProductLine.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/pages/CategoryPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/pages/CategoryPage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/pages/HomePage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/pages/HomePage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/pages/ProductPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/pages/ProductPage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/pages/SearchResultsPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/pages/SearchResultsPage.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/pages/ShoppingCartPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/pages/ShoppingCartPage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/pages/SignInPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/pages/SignInPage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/pages/account/MyAccountPage.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/pages/account/OpenOrderDetailsPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/pages/account/OpenOrderDetailsPage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/pages/account/OrderHistoryPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/pages/account/OrderHistoryPage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/pages/components/ProductMiniatureComponent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/pages/components/ProductMiniatureComponent.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/pages/components/cart/AddToCartPopupComponent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/pages/components/cart/AddToCartPopupComponent.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/providers/UrlProvider.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/providers/UrlProvider.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/pages/components/cart/CartProductLineComponent.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/pages/components/header/SearchInputComponent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/pages/components/header/SearchInputComponent.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/tests/LoginTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/tests/LoginTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/tests/cart/GenericRandomProductsTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/tests/cart/GenericRandomProductsTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/tests/cart/ShoppingCartTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/tests/cart/ShoppingCartTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/tests/checkout/CheckoutTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/tests/checkout/CheckoutTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/tests/search/SearchTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/tests/search/SearchTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -61,7 +68,7 @@
       <recent name="C:\Users\mtyszkiewicz\IdeaProjects\selenium_advanced\src\test\resources" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.LoginTest.test">
+  <component name="RunManager" selected="JUnit.GenericRandomProductsTest.genericCart">
     <configuration name="CheckoutTest.checkoutTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="selenium_advanced" />
       <extension name="coverage">
@@ -73,6 +80,22 @@
       <option name="PACKAGE_NAME" value="tests.checkout" />
       <option name="MAIN_CLASS_NAME" value="tests.checkout.CheckoutTest" />
       <option name="METHOD_NAME" value="checkoutTest" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="GenericRandomProductsTest.genericCart" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="selenium_advanced" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="tests.cart.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="tests.cart" />
+      <option name="MAIN_CLASS_NAME" value="tests.cart.GenericRandomProductsTest" />
+      <option name="METHOD_NAME" value="genericCart" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -110,22 +133,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ShoppingCartTest.product_added_to_the_cart_should_have_the_same_data_in_popup_summary_as_on_product_page" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="selenium_advanced" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="tests.cart.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="tests.cart" />
-      <option name="MAIN_CLASS_NAME" value="tests.cart.ShoppingCartTest" />
-      <option name="METHOD_NAME" value="product_added_to_the_cart_should_have_the_same_data_in_popup_summary_as_on_product_page" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="tests in selenium_advanced" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="selenium_advanced" />
       <option name="TEST_OBJECT" value="directory" />
@@ -136,11 +143,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.GenericRandomProductsTest.genericCart" />
         <item itemvalue="JUnit.LoginTest.test" />
         <item itemvalue="JUnit.CheckoutTest.checkoutTest" />
         <item itemvalue="JUnit.RemovingFromCartTest.testShoppingCart" />
         <item itemvalue="JUnit.tests in selenium_advanced" />
-        <item itemvalue="JUnit.ShoppingCartTest.product_added_to_the_cart_should_have_the_same_data_in_popup_summary_as_on_product_page" />
       </list>
     </recent_temporary>
   </component>
@@ -177,29 +184,22 @@
       <option name="project" value="LOCAL" />
       <updated>1701790833151</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Add checkout test (to be continued)">
+      <option name="closed" value="true" />
+      <created>1701874787915</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1701874787915</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Add test for &quot;Product successfully added to your shopping cart&quot;" />
     <MESSAGE value="Refactor after encountering error while testing the 'Product successfully added to your shopping cart test'" />
     <MESSAGE value="Modify user factory to include already registered users (to be continued)" />
-    <option name="LAST_COMMIT_MESSAGE" value="Modify user factory to include already registered users (to be continued)" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/test/java/tests/LoginTest.java</url>
-          <line>70</line>
-          <option name="timeStamp" value="11" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/test/java/pages/account/PlacedOrderDetailsPage.java</url>
-          <line>27</line>
-          <option name="timeStamp" value="12" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+    <MESSAGE value="Add checkout test (to be continued)" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add checkout test (to be continued)" />
   </component>
 </project>

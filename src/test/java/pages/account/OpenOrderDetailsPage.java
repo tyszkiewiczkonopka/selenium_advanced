@@ -23,8 +23,8 @@ public class OpenOrderDetailsPage extends BasePage {
     private WebElement addNewInvoiceAddressLink;
     @FindBy(name = "confirm-addresses")
     private WebElement continueButton;
-    @FindBy(css = ".delivery-options input[type='radio']")
-    private List<WebElement> deliveryOptionsRadioButtons;
+//    @FindBy(css = ".delivery-options input[type='radio']")
+//    private List<WebElement> deliveryOptionsRadioButtons;
     @FindBy(name = "confirmDeliveryOption")
     private WebElement confirmDeliveryOption;
     @FindBy(id = "payment-option-1")
@@ -38,6 +38,7 @@ public class OpenOrderDetailsPage extends BasePage {
         billingAddressDiffersLink.click();
         defaultWait.until(ExpectedConditions.urlContains(UrlProvider.ADD_BILLING_ADDRESS));
         addNewInvoiceAddressLink.click();
+
         newAddressPage.addNewAddress(countryName);
         continueButton.click();
         return this;
@@ -52,8 +53,7 @@ public class OpenOrderDetailsPage extends BasePage {
         termsOfServiceCheckbox.click();
         return this;
     }
-    public OpenOrderDetailsPage placeOrder(){
+    public void placeOrder(){
         placeOrderButton.click();
-        return this;
     }
 }

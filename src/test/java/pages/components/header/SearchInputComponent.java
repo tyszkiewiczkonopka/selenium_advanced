@@ -45,7 +45,6 @@ public class SearchInputComponent extends BasePage {
                 log.info("Product '{}' found in search results.", productName);
                 return true;
             }
-
         }
         log.info("Product '{}' not found in search results.", productName);
         return false;

@@ -46,7 +46,7 @@ public class ShoppingCartTest extends BaseTest {
         int expectedProductQuantity = 3;
 
         setProductQuantity(String.valueOf(expectedProductQuantity));
-        productPage.addToCart();
+        productPage.clickAddToCart();
         verifyProductNameInPopup(desiredProductName);
         verifyProductPriceInPopup(expectedProductPrice);
         verifyProductsTotalPrice(expectedProductPrice, expectedProductQuantity);
@@ -108,7 +108,7 @@ public class ShoppingCartTest extends BaseTest {
     }
 
     private void setProductQuantity(String desiredProductQuantity) {
-        productPage.changeQuantity(desiredProductQuantity);
+        productPage.setQuantity(desiredProductQuantity);
         int currentQuantity = Integer.parseInt(productPage.getCurrentQuantity());
         log.info("Actual product quantity on Product Page: " + currentQuantity);
         log.info("Expected product quantity on Product Page: " + desiredProductQuantity);

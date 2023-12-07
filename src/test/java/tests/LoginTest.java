@@ -23,12 +23,11 @@ public class LoginTest extends BaseTest {
     static UserFactory userFactory;
     LoginPage loginPage;
     NewAddressPage newAddressPage;
-    MyAccountPage myAccountPage;
     ProductMiniatureComponent productMiniatureComponent;
     ProductPage productPage;
     AddToCartPopupComponent addToCartPopupComponent;
     ShoppingCartPage shoppingCartPage;
-    OpenOrderDetailsPage orderDetailsPage;
+    OpenOrderDetailsPage openOrderDetailsPage;
     OrderConfirmationPage orderConfirmationPage;
     OrderHistoryPage orderHistoryPage;
     PlacedOrderDetailsPage placedOrderDetailsPage;
@@ -37,12 +36,11 @@ public class LoginTest extends BaseTest {
     public void setUpLoginTest() {
         loginPage = new LoginPage(driver);
         newAddressPage = new NewAddressPage(driver);
-        myAccountPage = new MyAccountPage(driver);
         productMiniatureComponent = new ProductMiniatureComponent(driver);
         productPage = new ProductPage(driver);
         addToCartPopupComponent = new AddToCartPopupComponent(driver);
         shoppingCartPage = new ShoppingCartPage(driver);
-        orderDetailsPage = new OpenOrderDetailsPage(driver);
+        openOrderDetailsPage = new OpenOrderDetailsPage(driver);
         orderConfirmationPage = new OrderConfirmationPage(driver);
         orderHistoryPage = new OrderHistoryPage(driver);
         placedOrderDetailsPage = new PlacedOrderDetailsPage(driver);
@@ -54,17 +52,19 @@ public class LoginTest extends BaseTest {
         driver.get(UrlProvider.APP);
         String desiredProductName = "THE BEST IS YET POSTER";
         productMiniatureComponent.openProductView(desiredProductName);
-        productPage.addToCart();
+        productPage.clickAddToCart();
         addToCartPopupComponent.proceedToCheckout();
         shoppingCartPage.proceedToCheckout();
-        orderDetailsPage
+        openOrderDetailsPage
                 .addDifferentBillingAddress("Poland")
                 .selectShippingMethod()
                 .selectPaymentMethod()
                 .placeOrder();
+
         String orderReference = orderConfirmationPage.extractOrderReference();
         Double totalPrice = orderConfirmationPage.extractOrderTotal();
         String orderStatus = "Awaiting check payment";
+
         driver.get(UrlProvider.ORDER_HISTORY_AND_DETAILS);
         orderHistoryPage.openOrderDetails(orderReference);
         assertOrderDateIsToday();
@@ -92,7 +92,8 @@ public class LoginTest extends BaseTest {
         log.info("Actual total price: " + totalPriceFromOrderHistory + ". Expected total price: " + totalPriceFromOrderSummary);
 
     }
-    private void assertOrderStatus(String orderStatus){
+
+    private void assertOrderStatus(String orderStatus) {
         assertThat(placedOrderDetailsPage.getOrderStatus()).isEqualTo(orderStatus);
         log.info("Actual order status: " + placedOrderDetailsPage.getOrderStatus() + ". Expected order status: " + orderStatus);
 

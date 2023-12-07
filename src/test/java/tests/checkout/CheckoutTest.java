@@ -37,7 +37,7 @@ public class CheckoutTest extends BaseTest {
         loginPage.login("ty @gmail.com", "adminADMIN");
         driver.get(UrlProvider.APP);
         productMiniatureComponent.openProductView("THE BEST IS YET POSTER");
-        productPage.addToCart();
+        productPage.clickAddToCart();
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         wait.until(ExpectedConditions.attributeContains(By.id("blockcart-modal"), "class", "modal fade in"));
         addToCartPopupComponent.proceedToCheckout();

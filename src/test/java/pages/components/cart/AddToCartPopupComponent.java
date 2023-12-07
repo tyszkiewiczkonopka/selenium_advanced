@@ -8,13 +8,17 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import pages.BasePage;
+import pages.ShoppingCartPage;
 
 import java.time.Duration;
 
 @Getter
 public class AddToCartPopupComponent extends BasePage {
+    ShoppingCartPage shoppingCartPage;
+
     public AddToCartPopupComponent(WebDriver driver) {
         super(driver);
+        shoppingCartPage = new ShoppingCartPage(driver);
     }
 
     @FindBy(css = ".modal.fade.in .h6.product-name")
@@ -58,5 +62,22 @@ public class AddToCartPopupComponent extends BasePage {
         wait.until(ExpectedConditions.attributeContains(By.id("blockcart-modal"), "class", "modal fade in"));
         proceedToCheckoutButton.click();
     }
-
+    public boolean isProductInCart(String productName) {
+        for (WebElement shoppingCartItem : shoppingCartPage.getAllShoppingCartItems()) {
+            String cartProductName = shoppingCartItem.getText();
+            if (cartProductName.equals(productName)) {
+                return true;
+            }
+        }
+        return false;
+    }
+//    public void assertProductAddedOrQuantityUpdated(String productName, int addToCartQuantity){
+//        if(isProductInCart(productName)){
+//            String currentQuantityInCart = shoppingCartPage.getCurrentQuantityInCart(productName);
+//            String increasedQuantityInCart = currentQuantityInCart + addToCartQuantity;
+//            shoppingCartPage.updateQuantityInCart(Integer.parseInt(increasedQuantityInCart));
+//        } else {
+//
+//        }
+//    }
 }

@@ -14,24 +14,27 @@ public class OrderHistoryPage extends BasePage {
         super(driver);
     }
 
-    @FindBy(css = ".table")
-    private WebElement ordersTable;
+//    @FindBy(css = ".table")
+//    private WebElement ordersTable;
     @FindBy(css = ".table tbody tr")
     private List<WebElement> orderTableRows;
     @FindBy(css = "[data-link-action='view-order-details']")
     private WebElement detailsLink;
 
-
-
     public void openOrderDetails(String orderReference) {
+        WebElement foundRow = null;
         for (WebElement row : orderTableRows) {
             if (row.getText().contains(orderReference)) {
-                WebElement foundRow = row;
+                foundRow = row;
                 break;
             }
-            detailsLink.click();
         }
-        log.info("Order details opened for order: " + orderReference);
+        if (foundRow != null) {
+            detailsLink.click();
+            log.info("Order details opened for order: " + orderReference);
+        } else {
+            log.info("No row found for order: " + orderReference);
+        }
     }
 
 

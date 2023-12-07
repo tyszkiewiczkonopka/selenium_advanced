@@ -1,5 +1,6 @@
 package pages;
 
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -24,40 +25,23 @@ public class ShoppingCartPage extends BasePage {
     private WebElement proceedToCheckoutButton;
 
 
-//    public void updateQuantityInCart(String productName, int totalQuantity) {
-//        WebElement cartItem = findCartItemByName(productName);
-//        WebElement quantityInput = cartItem.findElement(By.cssSelector(".js-cart-line-product-quantity"));
-//        quantityInput.clear();
-//        quantityInput.sendKeys(String.valueOf(totalQuantity));
-//    }
-//
-//    public WebElement findCartItemByName(String productName) {
-//        for (WebElement shoppingCartItem : shoppingCartItems) {
-//            String cartProductName = shoppingCartItem.getText();
-//            if (cartProductName.equals(productName)) {
-//                return shoppingCartItem;
-//            }
-//        }
-//        return null;
-//    }
+    public void updateQuantityInCart(int totalQuantity) {
+        quantityInput.clear();
+        quantityInput.sendKeys(String.valueOf(totalQuantity));
+    }
 
 
-    //    public boolean isProductInCart(String productName) {
-//        for (WebElement shoppingCartItem : shoppingCartItems) {
-//            String cartProductName = cartItem.getText();
-//            if (cartProductName.equals(productName)) {
-//                return true;
-//            }
-//        }
-//        return false;
-//    }
-//
-//    public String getCurrentQuantityInCart(String productName) {
-//            JavascriptExecutor js = (JavascriptExecutor) driver;
-//            return (String) js.executeScript("return arguments[0].value", quantityInput);
-//    }
+    public String getCurrentQuantityInCart(String productName) {
+            JavascriptExecutor js = (JavascriptExecutor) driver;
+            return (String) js.executeScript("return arguments[0].value", quantityInput);
+    }
+
     public void proceedToCheckout() {
         defaultWait.until(ExpectedConditions.visibilityOf(proceedToCheckoutButton));
         proceedToCheckoutButton.click();
     }
+    public List<WebElement> getAllShoppingCartItems(){
+            return shoppingCartItems;
+    }
+
 }
