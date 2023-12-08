@@ -13,7 +13,6 @@ import providers.UrlProvider;
 public class NewAddressPage extends BasePage {
     AddressFactory addressFactory;
 
-
     public NewAddressPage(WebDriver driver) {
         super(driver);
         addressFactory = new AddressFactory();
@@ -36,6 +35,7 @@ public class NewAddressPage extends BasePage {
         cityInput.sendKeys(newAddress.getCity());
         postcodeInput.sendKeys(newAddress.getPostcode());
         chooseCountry(countryName);
+
         log.info(newAddress.toString());
     }
 

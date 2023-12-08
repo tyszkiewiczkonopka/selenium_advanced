@@ -13,6 +13,7 @@ public class OrderConfirmationPage extends BasePage{
     @FindBy(css = ".total-value td:nth-of-type(2)")
     private WebElement orderTotal;
 
+    //TODO: check all method types if they should be of class type and perform method chaining if possible
     public String extractOrderReference(){
         String orderReference = orderReferenceSymbol.getText();
         return orderReference.replaceAll("Order reference: ", "");

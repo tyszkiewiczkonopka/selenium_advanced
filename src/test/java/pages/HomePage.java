@@ -7,7 +7,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import pages.components.ProductMiniatureComponent;
-import pages.components.cart.AddToCartPopupComponent;
+import pages.components.cart.CartPopupComponent;
 import pages.components.header.SearchInputComponent;
 
 import java.util.List;
@@ -16,17 +16,9 @@ import java.util.Random;
 
 @Slf4j
 public class HomePage extends BasePage {
-    SearchInputComponent searchInputComponent;
-    ProductMiniatureComponent productMiniatureComponent;
-    ProductPage productPage;
-    AddToCartPopupComponent addToCartPopupComponent;
 
     public HomePage(WebDriver driver) {
         super(driver);
-        searchInputComponent = new SearchInputComponent(driver);
-        productMiniatureComponent = new ProductMiniatureComponent(driver);
-        productPage = new ProductPage(driver);
-        addToCartPopupComponent = new AddToCartPopupComponent(driver);
     }
 
     @FindBy(css = ".products .product")
@@ -42,7 +34,7 @@ public class HomePage extends BasePage {
         WebElement randomProduct = products.get(randomIndex);
         String productName = getProductName(randomProduct);
         log.info("Random product: " + productName);
-        searchInputComponent.enterProductName(productName);
+        at(SearchInputComponent.class).enterProductName(productName);
         return productName;
     }
 
@@ -58,24 +50,24 @@ public class HomePage extends BasePage {
         return getProductName(randomProduct);
     }
 
-    public void addToCartRandomProduct() {
-        String homePageRandomProductName = getRandomProductName();
-        productMiniatureComponent.openProductView(homePageRandomProductName);
-        String randomQuantity = String.valueOf(productPage.getRandomQuantity());
-        productPage.setQuantity(randomQuantity);
-        productPage.clickAddToCart();
-        log.info("Added to cart: " + homePageRandomProductName + " x " + randomQuantity);
-    }
-
-    public void addToCartMultipleRandomProducts(int numberOfProducts) {
-        for (int i = 0; i < numberOfProducts; i++) {
-            addToCartRandomProduct();
-            if (i == numberOfProducts - 1) {
-             addToCartPopupComponent.proceedToCheckout();
-            } else {
-                driver.navigate().back();
-            }
-        }
-    }
+//    public void addToCartRandomProduct() {
+//        String homePageRandomProductName = getRandomProductName();
+//        productMiniatureComponent.openProductView(homePageRandomProductName);
+//        String randomQuantity = String.valueOf(productPage.getRandomQuantity());
+//        productPage.setQuantity(randomQuantity);
+//        productPage.clickAddToCart();
+//        log.info("Added to cart: " + homePageRandomProductName + " x " + randomQuantity);
+//    }
+//
+//    public void addToCartMultipleRandomProducts(int numberOfProducts) {
+//        for (int i = 0; i < numberOfProducts; i++) {
+//            addToCartRandomProduct();
+//            if (i == numberOfProducts - 1) {
+//             addToCartPopupComponent.proceedToCheckout();
+//            } else {
+//                driver.navigate().back();
+//            }
+//        }
+//    }
 
 }

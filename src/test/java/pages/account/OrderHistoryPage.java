@@ -21,7 +21,7 @@ public class OrderHistoryPage extends BasePage {
     @FindBy(css = "[data-link-action='view-order-details']")
     private WebElement detailsLink;
 
-    public void openOrderDetails(String orderReference) {
+    public void openOrderDetails(String orderReference) { // type: what page after opening order details -> PlacedOrderDetailsPage?
         WebElement foundRow = null;
         for (WebElement row : orderTableRows) {
             if (row.getText().contains(orderReference)) {

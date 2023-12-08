@@ -1,8 +1,10 @@
 package pages.components.filters;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import pages.BasePage;
 
 import java.util.List;
@@ -24,7 +26,7 @@ public class FilterPriceRangeComponent extends BasePage {
         return List.of(targetPriceRange.split(" - "));
     }
 
-    private String getPriceLabel() {
+    private String getPriceLabel() { // zmienić na getPrice z BasePage?
         return priceElement.getText();
     }
 
@@ -44,7 +46,7 @@ public class FilterPriceRangeComponent extends BasePage {
                 .replace("$", ""));
     }
 
-    public void moveMin(Double target) {
+    public FilterPriceRangeComponent moveMin(Double target) {
         while (!getActualMinPriceValue().equals(target)) {
             actions.clickAndHold(leftFilterHandle)
                     .moveByOffset(SINGLE_MOVE, 0)
@@ -53,10 +55,11 @@ public class FilterPriceRangeComponent extends BasePage {
 
         actions.release()
                 .build().perform();
-
+        return this;
     }
 
-    public void moveMax(Double target) {
+
+    public FilterPriceRangeComponent moveMax(Double target) {
         while (!getActualMaxPriceValue().equals(target)) {
             actions.clickAndHold(rightFilterHandle)
                     .moveByOffset(-SINGLE_MOVE, 0)
@@ -65,6 +68,7 @@ public class FilterPriceRangeComponent extends BasePage {
 
         actions.release()
                 .build().perform();
+        return this;
     }
 
 }

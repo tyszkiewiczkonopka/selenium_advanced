@@ -8,17 +8,15 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import pages.BasePage;
-import pages.ShoppingCartPage;
+import pages.CartPage;
 
+import java.math.BigDecimal;
 import java.time.Duration;
 
 @Getter
-public class AddToCartPopupComponent extends BasePage {
-    ShoppingCartPage shoppingCartPage;
-
-    public AddToCartPopupComponent(WebDriver driver) {
+public class CartPopupComponent extends BasePage {
+    public CartPopupComponent(WebDriver driver) {
         super(driver);
-        shoppingCartPage = new ShoppingCartPage(driver);
     }
 
     @FindBy(css = ".modal.fade.in .h6.product-name")
@@ -49,35 +47,20 @@ public class AddToCartPopupComponent extends BasePage {
         return Integer.parseInt(cartSummaryText.replaceAll("[^0-9]", ""));
     }
 
-    public double extractProductTotal() {
+    public BigDecimal extractProductTotal() {
         String subtotalProductsPrice = subtotalValue.getText();
-        return Double.parseDouble(subtotalProductsPrice.replaceAll("[^\\d.]", ""));
+        String bareSubtotalProductsPrice = subtotalProductsPrice.replaceAll("[^\\d.]", "");
+        return new BigDecimal(bareSubtotalProductsPrice);
     }
-    public double extractProductPriceFromPopup(){
+    public BigDecimal extractProductPriceFromPopup(){
         String productPrice = getProductPrice().getText();
-        return Double.parseDouble(productPrice.replaceAll("[^\\d.]", ""));
+        String bareProductPrice = productPrice.replaceAll("[^\\d.]", "");
+        return new BigDecimal(bareProductPrice);
     }
-    public void proceedToCheckout(){
+    public void proceedToCheckout(){ // type: after proceeding
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         wait.until(ExpectedConditions.attributeContains(By.id("blockcart-modal"), "class", "modal fade in"));
         proceedToCheckoutButton.click();
     }
-    public boolean isProductInCart(String productName) {
-        for (WebElement shoppingCartItem : shoppingCartPage.getAllShoppingCartItems()) {
-            String cartProductName = shoppingCartItem.getText();
-            if (cartProductName.equals(productName)) {
-                return true;
-            }
-        }
-        return false;
-    }
-//    public void assertProductAddedOrQuantityUpdated(String productName, int addToCartQuantity){
-//        if(isProductInCart(productName)){
-//            String currentQuantityInCart = shoppingCartPage.getCurrentQuantityInCart(productName);
-//            String increasedQuantityInCart = currentQuantityInCart + addToCartQuantity;
-//            shoppingCartPage.updateQuantityInCart(Integer.parseInt(increasedQuantityInCart));
-//        } else {
-//
-//        }
-//    }
+
 }

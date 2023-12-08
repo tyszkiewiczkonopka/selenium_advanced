@@ -12,7 +12,6 @@ import java.time.Duration;
 import java.util.List;
 @Slf4j
 public class SearchInputComponent extends BasePage {
-    WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 
     public SearchInputComponent(WebDriver driver) {
         super(driver);
@@ -28,17 +27,17 @@ public class SearchInputComponent extends BasePage {
     @FindBy(css = "button[type=\"submit\"] .material-icons.search")
     private WebElement searchButton;
 
-    public void enterProductName(String productName) {
+    public void enterProductName(String productName) { // type SearchInputComponent?
         searchInput.clear();
         searchInput.sendKeys(productName);
     }
 
-    public void clickSearchButton() {
+    public void clickSearchButton() { // type searchResultsPage?
         searchButton.click();
     }
 
     public boolean isTextInSearchResultsDropdown(String productName) {
-        wait.until(ExpectedConditions.visibilityOf(searchResultsDropdown));
+        defaultWait.until(ExpectedConditions.visibilityOf(searchResultsDropdown));
         for(WebElement result : searchResults){
             String searchedText = result.getText();
             if (searchedText.contains(productName)) {

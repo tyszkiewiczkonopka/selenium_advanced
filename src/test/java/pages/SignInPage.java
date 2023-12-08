@@ -8,7 +8,7 @@ import org.openqa.selenium.support.FindBy;
 
 public class SignInPage extends BasePage {
 
-    static UserFactory userFactory;
+    UserFactory userFactory;
     @FindBy(name = "firstname")
     private WebElement firstNameInput;
     @FindBy(name = "lastname")
@@ -31,7 +31,5 @@ public class SignInPage extends BasePage {
         emailInput.sendKeys(randomUser.getEmail());
         passwordInput.sendKeys(randomUser.getPassword());
     }
-
-
 
 }

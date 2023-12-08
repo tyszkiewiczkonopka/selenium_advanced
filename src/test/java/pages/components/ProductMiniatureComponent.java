@@ -32,28 +32,30 @@ public class ProductMiniatureComponent extends BasePage {
         return productMiniatures;
     }
 
-    public String getProductName() {
-        return productTitle.getText();
-    }
-
     public void openProductView(String desiredProductName) {
         WebElement element = driver.findElement(By.linkText(desiredProductName));
         element.click();
     }
 
-    public double extractProductPriceFromProductMiniature() {
-        String productPriceText = productPrice.getText();
-        productPriceText = productPriceText.replaceAll("\\.(?=.*\\.)", "");
-
-        try {
-            return Double.parseDouble(productPriceText);
-        } catch (NumberFormatException e) {
-            log.warn("Invalid product price format: {}", productPriceText);
-            throw e;
-        }
-    }
-
+    // TODO: getProductName do BasePage?
     public String getProductNameFromMiniature(WebElement productMiniature) {
         return productTitle.getText();
     }
+//    public String getProductName() {
+
+//        return productTitle.getText();
+
+//    }
+//    public double extractProductPriceFromProductMiniature() {
+//        String productPriceText = productPrice.getText();
+//        productPriceText = productPriceText.replaceAll("\\.(?=.*\\.)", "");
+//
+//        try {
+//            return Double.parseDouble(productPriceText);
+//        } catch (NumberFormatException e) {
+//            log.warn("Invalid product price format: {}", productPriceText);
+//            throw e;
+//        }
+
+//    }
 }

@@ -45,7 +45,7 @@ public class HeaderMenuComponent extends BasePage {
         return categoryNames;
     }
 
-    public void chooseMenuCategory(String categoryName) {
+    public void chooseMenuCategory(String categoryName) { // type -> CategoryName?
         WebElement categoryElement = menuCategories.stream()
                 .filter(element -> element.getText().equalsIgnoreCase(categoryName))
                 .findFirst()

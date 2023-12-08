@@ -53,7 +53,7 @@ public class OpenOrderDetailsPage extends BasePage {
         termsOfServiceCheckbox.click();
         return this;
     }
-    public void placeOrder(){
+    public void placeOrder(){ // type: after placing order
         placeOrderButton.click();
     }
 }

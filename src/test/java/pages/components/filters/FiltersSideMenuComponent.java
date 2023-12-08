@@ -20,8 +20,9 @@ public class FiltersSideMenuComponent extends BasePage {
         return filtersMenu.isDisplayed();
     }
 
-    public void clearAllFilters() {
+    public FiltersSideMenuComponent clearAllFilters() {
         clearAllButton.click();
+        return this;
     }
 
 

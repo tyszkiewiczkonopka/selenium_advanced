@@ -12,9 +12,6 @@ import java.util.Random;
 
 @Slf4j
 public class CategoryPage extends BasePage {
-
-    ProductMiniatureComponent productMiniatureComponent;
-    ProductPage productPage;
     @FindBy(css = ".total-products p")
     private WebElement totalProductsCount;
     @FindBy(css = ".products .product-miniature")
@@ -23,8 +20,6 @@ public class CategoryPage extends BasePage {
 
     public CategoryPage(WebDriver driver) {
         super(driver);
-        productMiniatureComponent = new ProductMiniatureComponent(driver);
-        productPage = new ProductPage(driver);
     }
 
     public String getOpenedCategoryTitle() {
@@ -44,7 +39,7 @@ public class CategoryPage extends BasePage {
 
     public void areProductsWithinFilteredPriceRange(Double minTargetPrice, Double maxTargetPrice) {
         for (WebElement product : productMiniatures) {
-            String productPriceElement = String.valueOf(productMiniatureComponent.getProductPrice());
+            String productPriceElement = String.valueOf(at(ProductMiniatureComponent.class).getProductPrice());
             String productPriceText = productPriceElement.replace("$", "");
             try {
                 Double productPrice = Double.valueOf(productPriceText);
@@ -56,27 +51,26 @@ public class CategoryPage extends BasePage {
             } catch (NumberFormatException e) {
                 log.warn("Invalid product price format: {}", productPriceText);
             }
-
         }
     }
 
     public void addRandomProductToCart() {
         WebElement randomProduct = selectRandomProduct();
-        String randomProductName = productMiniatureComponent.getProductNameFromMiniature(randomProduct);
-        productMiniatureComponent.openProductView(randomProductName);
-        productPage.clickAddToCart();
+        String randomProductName = at(ProductMiniatureComponent.class).getProductNameFromMiniature(randomProduct);
+        at(ProductMiniatureComponent.class).openProductView(randomProductName);
+        at(ProductPage.class).addProduct();
         driver.navigate().back();
         log.info("Added product '{}' to the cart.", randomProductName);
     }
 
     public WebElement selectRandomProduct() {
-        if (productMiniatureComponent.getAllMiniatures().isEmpty()) {
+        if (at(ProductMiniatureComponent.class).getAllMiniatures().isEmpty()) {
             throw new IllegalStateException("No products found on the page.");
         }
 
         Random random = new Random();
-        int randomIndex = random.nextInt(productMiniatureComponent.getAllMiniatures().size());
-        return productMiniatureComponent.getAllMiniatures().get(randomIndex);
+        int randomIndex = random.nextInt(at(ProductMiniatureComponent.class).getAllMiniatures().size());
+        return at(ProductMiniatureComponent.class).getAllMiniatures().get(randomIndex);
     }
 
 }

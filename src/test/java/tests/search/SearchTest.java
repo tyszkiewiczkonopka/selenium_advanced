@@ -12,29 +12,21 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @Slf4j
 public class SearchTest extends BaseTest {
-    HomePage homePage = new HomePage(BaseTest.driver);
-    SearchResultsPage searchResultsPage = new SearchResultsPage(BaseTest.driver);
-    SearchInputComponent searchInputComponent = new SearchInputComponent(BaseTest.driver);
-
-
     @Test
     void randomly_chosen_product_should_be_found_by_its_name_in_search_results() {
         BaseTest.driver.get(UrlProvider.APP);
-        String productName = homePage.writeRandomProductNameIntoSearchField();
-        searchInputComponent.clickSearchButton();
+        String productName = at(HomePage.class).writeRandomProductNameIntoSearchField();
+        at(SearchInputComponent.class).clickSearchButton();
 
-        assertTrue(searchResultsPage.isProductInSearchResults(productName));
+        assertTrue(at(SearchResultsPage.class).isProductInSearchResults(productName));
     }
 
     @Test
     void test_written_into_search_field_should_be_found_among_dropdown_results() {
         BaseTest.driver.get(UrlProvider.APP);
         String productName = "HUMMINGBIRD";
-        searchInputComponent.enterProductName(productName);
+        at(SearchInputComponent.class).enterProductName(productName);
 
-        assertTrue(searchInputComponent.isTextInSearchResultsDropdown(productName));
+        assertTrue(at(SearchInputComponent.class).isTextInSearchResultsDropdown(productName));
     }
-
-
-
 }

@@ -11,23 +11,21 @@ import java.time.Duration;
 import java.util.List;
 @Slf4j
 public class SearchResultsPage extends BasePage{
-    HomePage homePage;
+
     public SearchResultsPage(WebDriver driver) {
         super(driver);
-        homePage = new HomePage(driver);
     }
     @FindBy(css = ".products .product")
     public List<WebElement> products;
 
     public boolean isProductInSearchResults(String productName) {
         for (WebElement searchResult : products) {
-            String resultText = homePage.getProductName(searchResult);
+            String resultText = at(HomePage.class).getProductName(searchResult);
             if (resultText.contains(productName)) {
                 log.info("Product '{}' found in search results.", productName);
                 return true;
             }
         }
-
         log.info("Product '{}' not found in search results.", productName);
         return false;
     }
