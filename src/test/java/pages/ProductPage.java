@@ -3,22 +3,17 @@ package pages;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 import models.CartLine;
+import models.CartLineQuerable;
 import models.Product;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import pages.components.ProductMiniatureComponent;
 
-import java.math.BigDecimal;
 import java.util.Random;
 
 @Slf4j
 @Getter
-public class ProductPage extends BasePage {
-    public ProductPage(WebDriver driver) {
-        super(driver);
-    }
-
+public class ProductPage extends BasePage implements CartLineQuerable {
     @FindBy(css = ".qty #quantity_wanted")
     private WebElement quantityInput;
     @FindBy(css = ".btn.add-to-cart")
@@ -28,6 +23,9 @@ public class ProductPage extends BasePage {
     @FindBy(css = ".product-container [itemprop='name']")
     private WebElement productName;
 
+    public ProductPage(WebDriver driver) {
+        super(driver);
+    }
 
     public CartLine toCartLine() {
         return new CartLine(
@@ -35,12 +33,21 @@ public class ProductPage extends BasePage {
                 Integer.parseInt(getCurrentQuantity())
         );
     }
-    public void setQuantity(String quantity) {
+
+    public ProductPage setQuantity(String quantity) {
         quantityInput.clear();
         quantityInput.sendKeys(quantity);
+
+        return this;
     }
+
     public String getCurrentQuantity() {
         return quantityInput.getAttribute("value");
+    }
+
+    public int generateRandomQuantity() {
+        Random random = new Random();
+        return random.nextInt(10) + 1;
     }
 
     public void addProduct() {

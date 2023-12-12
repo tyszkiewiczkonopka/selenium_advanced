@@ -1,5 +1,6 @@
 package pages.account;
 
+import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 import models.Address;
 import models.AddressFactory;
@@ -8,15 +9,11 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.Select;
 import pages.BasePage;
-import providers.UrlProvider;
+
 @Slf4j
+@Getter
 public class NewAddressPage extends BasePage {
     AddressFactory addressFactory;
-
-    public NewAddressPage(WebDriver driver) {
-        super(driver);
-        addressFactory = new AddressFactory();
-    }
 
     @FindBy(name = "address1")
     private WebElement addressInput;
@@ -27,6 +24,10 @@ public class NewAddressPage extends BasePage {
     @FindBy(name = "id_country")
     private WebElement countryDropdown;
 
+    public NewAddressPage(WebDriver driver) {
+        super(driver);
+        addressFactory = new AddressFactory();
+    }
 
     public void addNewAddress(String countryName) {
         Address newAddress = addressFactory.getRandomAddress();

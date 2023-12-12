@@ -1,17 +1,15 @@
 package pages;
 
+import lombok.Getter;
 import models.User;
 import models.UserFactory;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
+@Getter
 public class LoginPage extends BasePage {
     UserFactory userFactory = new UserFactory();
-
-    public LoginPage(WebDriver driver) {
-        super(driver);
-    }
 
     @FindBy(name = "email")
     private WebElement emailInput;
@@ -19,6 +17,10 @@ public class LoginPage extends BasePage {
     private WebElement passwordInput;
     @FindBy(css = "button#submit-login")
     private WebElement signInButton;
+
+    public LoginPage(WebDriver driver) {
+        super(driver);
+    }
 
     public void login(String email, String password) {
         emailInput.sendKeys(email);

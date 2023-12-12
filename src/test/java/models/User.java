@@ -11,13 +11,12 @@ public class User {
 
     }
 
-    public User(UserBuilder userBuilder){
+    public User(UserBuilder userBuilder) {
         this.firstName = userBuilder.firstName;
         this.lastName = userBuilder.lastName;
         this.email = userBuilder.email;
         this.password = userBuilder.password;
     }
-
 
 
     public String getFirstName() {
@@ -35,12 +34,13 @@ public class User {
     public String getPassword() {
         return password;
     }
+
     @Override
     public String toString() {
         return "User: " + this.firstName + ", " + this.lastName + ", " + this.email + ", " + this.password;
     }
 
-    public static class UserBuilder{
+    public static class UserBuilder {
         private String firstName;
         private String lastName;
         private String email;

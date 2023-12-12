@@ -1,6 +1,7 @@
 package providers;
 
 public class UrlProvider {
+
     public static final String APP = "http://146.59.32.4/index.php";
     public static final String SIGN_IN = APP + "?controller=authentication&create_account=1";
     public static final String CATEGORY_CLOTHES = APP + "?id_category=3&controller=category&id_lang=2";

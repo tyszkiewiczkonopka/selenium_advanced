@@ -1,21 +1,16 @@
 package pages.account;
 
+import lombok.Getter;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import pages.BasePage;
+import pages.OrderConfirmationPage;
 import providers.UrlProvider;
 
-import java.util.List;
-
-public class OpenOrderDetailsPage extends BasePage {
-    NewAddressPage newAddressPage;
-
-    public OpenOrderDetailsPage(WebDriver driver) {
-        super(driver);
-        newAddressPage = new NewAddressPage(driver);
-    }
+@Getter
+public class OrderSummaryPage extends BasePage {
 
     @FindBy(css = "[data-link-action='different-invoice-address']")
     private WebElement billingAddressDiffersLink;
@@ -23,8 +18,6 @@ public class OpenOrderDetailsPage extends BasePage {
     private WebElement addNewInvoiceAddressLink;
     @FindBy(name = "confirm-addresses")
     private WebElement continueButton;
-//    @FindBy(css = ".delivery-options input[type='radio']")
-//    private List<WebElement> deliveryOptionsRadioButtons;
     @FindBy(name = "confirmDeliveryOption")
     private WebElement confirmDeliveryOption;
     @FindBy(id = "payment-option-1")
@@ -34,26 +27,33 @@ public class OpenOrderDetailsPage extends BasePage {
     @FindBy(css = "#payment-confirmation button")
     private WebElement placeOrderButton;
 
-    public OpenOrderDetailsPage addDifferentBillingAddress(String countryName) {
+    public OrderSummaryPage(WebDriver driver) {
+        super(driver);
+    }
+
+    public OrderSummaryPage addDifferentBillingAddress(String countryName) {
         billingAddressDiffersLink.click();
         defaultWait.until(ExpectedConditions.urlContains(UrlProvider.ADD_BILLING_ADDRESS));
         addNewInvoiceAddressLink.click();
-
-        newAddressPage.addNewAddress(countryName);
+        at(NewAddressPage.class).addNewAddress(countryName);
         continueButton.click();
         return this;
     }
-    public OpenOrderDetailsPage selectShippingMethod() {
+
+    public OrderSummaryPage selectShippingMethod() {
         defaultWait.until(ExpectedConditions.urlContains(UrlProvider.ORDER_SUMMARY));
         confirmDeliveryOption.click();
         return this;
     }
-    public OpenOrderDetailsPage selectPaymentMethod(){
+
+    public OrderSummaryPage selectPaymentMethod() {
         payByCheckPaymentRadioButton.click();
         termsOfServiceCheckbox.click();
         return this;
     }
-    public void placeOrder(){ // type: after placing order
+
+    public OrderConfirmationPage placeOrder() {
         placeOrderButton.click();
+        return new OrderConfirmationPage(driver);
     }
 }

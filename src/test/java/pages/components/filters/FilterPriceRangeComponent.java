@@ -1,14 +1,14 @@
 package pages.components.filters;
 
-import org.openqa.selenium.By;
+import lombok.Getter;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import pages.BasePage;
 
 import java.util.List;
 
+@Getter
 public class FilterPriceRangeComponent extends BasePage {
     private final int SINGLE_MOVE = 25;
     @FindBy(css = "[id^='slider-range_'] a:nth-of-type(1)")
@@ -26,7 +26,7 @@ public class FilterPriceRangeComponent extends BasePage {
         return List.of(targetPriceRange.split(" - "));
     }
 
-    private String getPriceLabel() { // zmienić na getPrice z BasePage?
+    private String getPriceLabel() {
         return priceElement.getText();
     }
 
@@ -34,16 +34,14 @@ public class FilterPriceRangeComponent extends BasePage {
         String priceLabel = getPriceLabel();
         getPriceRangeValue(priceLabel);
 
-        return Double.parseDouble(getPriceRangeValue(priceLabel).get(0)
-                .replace("$", ""));
+        return Double.parseDouble(getPriceRangeValue(priceLabel).get(0).replace("$", ""));
     }
 
     public Double getActualMaxPriceValue() {
         String priceLabel = getPriceLabel();
         getPriceRangeValue(priceLabel);
 
-        return Double.parseDouble(getPriceRangeValue(priceLabel).get(1)
-                .replace("$", ""));
+        return Double.parseDouble(getPriceRangeValue(priceLabel).get(1).replace("$", ""));
     }
 
     public FilterPriceRangeComponent moveMin(Double target) {
@@ -52,12 +50,10 @@ public class FilterPriceRangeComponent extends BasePage {
                     .moveByOffset(SINGLE_MOVE, 0)
                     .build().perform();
         }
-
         actions.release()
                 .build().perform();
         return this;
     }
-
 
     public FilterPriceRangeComponent moveMax(Double target) {
         while (!getActualMaxPriceValue().equals(target)) {

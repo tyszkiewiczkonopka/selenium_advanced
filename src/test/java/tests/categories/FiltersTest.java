@@ -1,11 +1,7 @@
 package tests.categories;
 
 import lombok.extern.slf4j.Slf4j;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.openqa.selenium.By;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import pages.BasePage;
 import pages.CategoryPage;
 import pages.components.filters.FilterPriceRangeComponent;
 import pages.components.filters.FiltersSideMenuComponent;
@@ -16,13 +12,15 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 @Slf4j
 public class FiltersTest extends BaseTest {
+    FilterPriceRangeComponent priceFilter = at(FilterPriceRangeComponent.class);
+
     @Test
     public void price_filter_should_show_products_within_price_range() {
         BaseTest.driver.get(UrlProvider.CATEGORY_ACCESSORIES);
         int initialNumberOfProducts = at(CategoryPage.class).getNumberOfProductMiniaturesDisplayed();
 
         Double minTargetPrice = 13.00;
-        Double maxTargetPrice = 15.00;
+        Double maxTargetPrice = 19.00;
 
         assertTargetPriceRangeIsSet(minTargetPrice, maxTargetPrice);
         assertFilteredProductWithinPriceRange(minTargetPrice, maxTargetPrice);
@@ -32,15 +30,15 @@ public class FiltersTest extends BaseTest {
 
     private void assertTargetPriceRangeIsSet(Double minTargetPrice, Double maxTargetPrice) {
         log.info(">>>>> Set a new price range");
-        at(FilterPriceRangeComponent.class)
+        priceFilter
                 .moveMin(minTargetPrice)
                 .allSpinnersOff(FilterPriceRangeComponent.class);
-        at(FilterPriceRangeComponent.class)
+        priceFilter
                 .moveMax(maxTargetPrice)
                 .allSpinnersOff(FilterPriceRangeComponent.class);
 
-        Double minActualPrice =  at(FilterPriceRangeComponent.class).getActualMinPriceValue();
-        Double maxActualPrice =  at(FilterPriceRangeComponent.class).getActualMaxPriceValue();
+        Double minActualPrice = priceFilter.getActualMinPriceValue();
+        Double maxActualPrice = priceFilter.getActualMaxPriceValue();
 
         assertThat(minActualPrice).isEqualTo(minTargetPrice);
         assertThat(maxActualPrice).isEqualTo(maxTargetPrice);

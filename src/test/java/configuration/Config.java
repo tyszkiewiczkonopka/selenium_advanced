@@ -18,6 +18,7 @@ public class Config {
     public Map<BrowserType, Browser> getBrowsers() {
         return browsers;
     }
+
     public List<User> getUsers() {
         return users;
     }

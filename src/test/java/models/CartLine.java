@@ -4,7 +4,6 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 
 import java.math.BigDecimal;
-import java.util.Random;
 
 @AllArgsConstructor
 @Data
@@ -23,7 +22,5 @@ public class CartLine {
         quantity += quantityToAdd;
         totalPrice = product.getPrice().multiply(new BigDecimal(quantity));
     }
-    public int getRandomQuantity() {
-        return new Random().nextInt(10) + 1;
-    }
+
 }

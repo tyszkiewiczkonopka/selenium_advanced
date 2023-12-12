@@ -1,8 +1,5 @@
 package models;
 
-import pages.account.NewAddressPage;
-
-
 public class Address {
 
     private String address;

@@ -1,5 +1,6 @@
 package pages;
 
+import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -11,6 +12,7 @@ import java.util.List;
 import java.util.Random;
 
 @Slf4j
+@Getter
 public class CategoryPage extends BasePage {
     @FindBy(css = ".total-products p")
     private WebElement totalProductsCount;
@@ -39,7 +41,10 @@ public class CategoryPage extends BasePage {
 
     public void areProductsWithinFilteredPriceRange(Double minTargetPrice, Double maxTargetPrice) {
         for (WebElement product : productMiniatures) {
-            String productPriceElement = String.valueOf(at(ProductMiniatureComponent.class).getProductPrice());
+            String productPriceElement =
+                    String.valueOf(at(ProductMiniatureComponent.class)
+                            .getPrice(at(ProductMiniatureComponent.class).getProductPrice()));
+
             String productPriceText = productPriceElement.replace("$", "");
             try {
                 Double productPrice = Double.valueOf(productPriceText);
@@ -54,23 +59,5 @@ public class CategoryPage extends BasePage {
         }
     }
 
-    public void addRandomProductToCart() {
-        WebElement randomProduct = selectRandomProduct();
-        String randomProductName = at(ProductMiniatureComponent.class).getProductNameFromMiniature(randomProduct);
-        at(ProductMiniatureComponent.class).openProductView(randomProductName);
-        at(ProductPage.class).addProduct();
-        driver.navigate().back();
-        log.info("Added product '{}' to the cart.", randomProductName);
-    }
-
-    public WebElement selectRandomProduct() {
-        if (at(ProductMiniatureComponent.class).getAllMiniatures().isEmpty()) {
-            throw new IllegalStateException("No products found on the page.");
-        }
-
-        Random random = new Random();
-        int randomIndex = random.nextInt(at(ProductMiniatureComponent.class).getAllMiniatures().size());
-        return at(ProductMiniatureComponent.class).getAllMiniatures().get(randomIndex);
-    }
 
 }

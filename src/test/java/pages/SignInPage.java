@@ -1,11 +1,13 @@
 package pages;
 
+import lombok.Getter;
 import models.User;
 import models.UserFactory;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
+@Getter
 public class SignInPage extends BasePage {
 
     UserFactory userFactory;
