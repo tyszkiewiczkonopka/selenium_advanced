@@ -1,14 +1,15 @@
 package tests.categories;
 
 import lombok.extern.slf4j.Slf4j;
+import org.assertj.core.api.SoftAssertions;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import pages.CategoryPage;
-import pages.components.filters.FiltersSideMenuComponent;
-import pages.components.header.HeaderMenuComponent;
+import pages.categories.category.CategoryPage;
+import pages.categories.filters.FiltersSideMenuComponent;
+import pages.common.header.HeaderMenuComponent;
 import providers.UrlProvider;
-import tests.BaseTest;
+import tests.base.BaseTest;
 
 import java.util.List;
 
@@ -22,7 +23,7 @@ public class CategoriesTest extends BaseTest {
 
     @Test
     void category_names_should_be_displayed_after_entering_through_menu() {
-        BaseTest.driver.get(UrlProvider.APP);
+        driver.get(UrlProvider.APP);
         List<String> menuCategories = headerMenu.getAllCategoryNames();
 
         for (String category : menuCategories) {
@@ -35,8 +36,11 @@ public class CategoriesTest extends BaseTest {
 
     @Test
     void subcategory_names_should_be_displayed_after_entering_through_menu() {
-        BaseTest.driver.get(UrlProvider.APP);
+        driver.get(UrlProvider.APP);
         List<String> menuCategoryIds = headerMenu.getAllCategoryIds();
+
+        SoftAssertions softAssertions = new SoftAssertions();
+        softAssertions.assertThat(menuCategoryIds).isNotEmpty();
 
         for (String categoryId : menuCategoryIds) {
             WebElement category = driver.findElement(By.id(categoryId));
@@ -44,6 +48,11 @@ public class CategoriesTest extends BaseTest {
             headerMenu.hoverOverMenuCategory(category);
 
             List<String> subcategoryIds = headerMenu.getSubcategoryIds(category);
+
+            if (subcategoryIds.isEmpty()) {
+                log.info("No subcategories found for category: " + category.getText());
+                continue;
+            }
 
             for (String subcategoryId : subcategoryIds) {
                 category = driver.findElement(By.id(categoryId));
@@ -56,14 +65,17 @@ public class CategoriesTest extends BaseTest {
                 subcategory.click();
                 String actualSubcategory = categoryPage.getOpenedCategoryTitle().toUpperCase();
 
-                assertThat(expectedSubcategory).isEqualTo(actualSubcategory);
+                softAssertions.assertThat(expectedSubcategory).isEqualTo(actualSubcategory);
                 log.info("Expected category name: {}, Actual category name: {}", expectedSubcategory, actualSubcategory);
 
                 assertFilterMenuVisible();
                 assertNumberOfProducts();
             }
         }
+
+        softAssertions.assertAll();
     }
+
 
     private void assertCategoryName(String category) {
         headerMenu.chooseMenuCategory(category);
@@ -75,8 +87,7 @@ public class CategoriesTest extends BaseTest {
     }
 
     private void assertFilterMenuVisible() {
-        assertTrue(at(FiltersSideMenuComponent.class).isFiltersMenuDisplayed(),
-                "Filters menu is not displayed");
+        assertThat(at(FiltersSideMenuComponent.class).getFiltersMenu().isDisplayed()).isTrue();
     }
 
     private void assertNumberOfProducts() {

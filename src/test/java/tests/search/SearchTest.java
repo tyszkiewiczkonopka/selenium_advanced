@@ -2,30 +2,38 @@ package tests.search;
 
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
-import pages.HomePage;
-import pages.SearchResultsPage;
-import pages.components.header.SearchInputComponent;
+import pages.home.HomePage;
+import pages.search.SearchResultsPage;
+import pages.common.header.SearchInputComponent;
 import providers.UrlProvider;
-import tests.BaseTest;
+import tests.base.BaseTest;
 
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import java.util.List;
+
+import static org.assertj.core.api.Assertions.assertThat;
 
 @Slf4j
 public class SearchTest extends BaseTest {
     @Test
     void randomly_chosen_product_should_be_found_by_its_name_in_search_results() {
-        BaseTest.driver.get(UrlProvider.APP);
+        driver.get(UrlProvider.APP);
 
-        String productName = at(HomePage.class).writeRandomProductNameIntoSearchField();
-        at(SearchInputComponent.class).clickSearchButton();
-        assertTrue(at(SearchResultsPage.class).isProductInSearchResults(productName));
+        String productName = at(HomePage.class).getRandomProductName();
+        at(SearchInputComponent.class)
+                .enterProductName(productName)
+                .clickSearchButton();
+
+        assertThat(at(SearchResultsPage.class).getSearchResults()).contains(productName);
     }
 
     @Test
     void test_written_into_search_field_should_be_found_among_dropdown_results() {
-        BaseTest.driver.get(UrlProvider.APP);
+        driver.get(UrlProvider.APP);
+        String productName = "HUMMINGBIRD";
 
-        at(SearchInputComponent.class).enterProductName("HUMMINGBIRD");
-        assertTrue(at(SearchInputComponent.class).isTextInSearchResultsDropdown("HUMMINGBIRD"));
+        at(SearchInputComponent.class).enterProductName(productName);
+        List<String> dropdownResults = at(SearchInputComponent.class).getSearchResultsDropdown();
+
+        assertThat(dropdownResults).anyMatch(result -> result.contains(productName));
     }
 }

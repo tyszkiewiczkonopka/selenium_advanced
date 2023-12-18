@@ -1,17 +1,17 @@
 package tests.cart;
 
 import lombok.extern.slf4j.Slf4j;
-import models.Cart;
+import models.cart.Cart;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import pages.ProductPage;
-import pages.components.ProductMiniatureComponent;
-import pages.components.cart.CartPopupComponent;
-import pages.components.header.MiniCartComponent;
+import pages.product.ProductPage;
+import pages.common.productMiniature.ProductMiniatureComponent;
+import pages.cart.CartPopupComponent;
+import pages.common.header.MiniCartComponent;
 import providers.UrlProvider;
-import tests.BaseTest;
+import tests.base.BaseTest;
 
 import java.math.BigDecimal;
 import java.time.Duration;
@@ -27,7 +27,7 @@ public class CartPopupTest extends BaseTest {
         driver.get(UrlProvider.CATEGORY_ART);
         String desiredProductName = "THE BEST IS YET POSTER";
         ProductPage desiredProduct = at(ProductMiniatureComponent.class).openProductView(desiredProductName);
-        BigDecimal expectedProductPrice = desiredProduct.getPrice(desiredProduct.getPriceInput());
+        BigDecimal expectedProductPrice = desiredProduct.getProductPrice();
         int expectedProductQuantity = 3;
 
         at(ProductPage.class).setQuantity(String.valueOf(expectedProductQuantity));
@@ -53,7 +53,7 @@ public class CartPopupTest extends BaseTest {
     }
 
     private void verifyProductsTotalPrice(BigDecimal price, int quantity) {
-        BigDecimal actualTotalPrice = cartPopup.getPrice(cartPopup.getAllProductsPrice());
+        BigDecimal actualTotalPrice = cartPopup.getAllProductsPrice();
         BigDecimal expectedTotalPrice = price.multiply(new BigDecimal(quantity));
 
         assertThat(actualTotalPrice).isEqualTo(expectedTotalPrice);
@@ -80,7 +80,7 @@ public class CartPopupTest extends BaseTest {
     }
 
     private void verifyProductPriceInPopup(BigDecimal expectedProductPrice) {
-        BigDecimal actualProductPrice = cartPopup.getPrice(cartPopup.getProductPrice());
+        BigDecimal actualProductPrice = cartPopup.getProductPrice();
         assertThat(actualProductPrice).isEqualTo(expectedProductPrice);
         log.info("Actual product price in Pop-up: " + actualProductPrice);
         log.info("Expected product price in Pop-up: " + expectedProductPrice);
@@ -90,7 +90,7 @@ public class CartPopupTest extends BaseTest {
     private void verifyProductNameInPopup(String expectedProductName) {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         wait.until(ExpectedConditions.attributeContains(By.id("blockcart-modal"), "class", "modal fade in"));
-        String actualProductName = cartPopup.getText(cartPopup.getProductName());
+        String actualProductName = cartPopup.getProductName();
 
         assertThat(actualProductName).isEqualTo(expectedProductName);
 

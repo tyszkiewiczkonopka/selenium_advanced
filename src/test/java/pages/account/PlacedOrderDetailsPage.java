@@ -4,9 +4,10 @@ import lombok.Getter;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import pages.BasePage;
+import pages.base.BasePage;
 
-@Getter
+import java.math.BigDecimal;
+
 public class PlacedOrderDetailsPage extends BasePage {
     @FindBy(css = ".hidden-sm-down.table.table-bordered.table-striped > tbody > tr > td:nth-of-type(1)")
     private WebElement orderDateLabel;
@@ -20,4 +21,15 @@ public class PlacedOrderDetailsPage extends BasePage {
     }
 
 
+    public String getOrderDate() {
+        return getText(orderDateLabel);
+    }
+
+    public BigDecimal getOrderTotal() {
+        return getPrice(orderTotalLabel);
+    }
+
+    public String getOrderStatus() {
+        return getText(orderStatusLabel);
+    }
 }

@@ -1,15 +1,15 @@
 package pages.account;
 
-import lombok.Getter;
+import models.address.Address;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import pages.BasePage;
-import pages.OrderConfirmationPage;
+import pages.base.BasePage;
+import pages.order.OrderConfirmationPage;
 import providers.UrlProvider;
 
-@Getter
+
 public class OrderSummaryPage extends BasePage {
 
     @FindBy(css = "[data-link-action='different-invoice-address']")
@@ -31,11 +31,11 @@ public class OrderSummaryPage extends BasePage {
         super(driver);
     }
 
-    public OrderSummaryPage addDifferentBillingAddress(String countryName) {
+    public OrderSummaryPage addDifferentBillingAddress(Address newAddress, String countryName) {
         billingAddressDiffersLink.click();
         defaultWait.until(ExpectedConditions.urlContains(UrlProvider.ADD_BILLING_ADDRESS));
         addNewInvoiceAddressLink.click();
-        at(NewAddressPage.class).addNewAddress(countryName);
+        at(NewAddressPage.class).addNewAddress(newAddress, countryName);
         continueButton.click();
         return this;
     }

@@ -1,19 +1,15 @@
 package pages.account;
 
-import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
-import models.Address;
-import models.AddressFactory;
+import models.address.Address;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.Select;
-import pages.BasePage;
+import pages.base.BasePage;
 
 @Slf4j
-@Getter
 public class NewAddressPage extends BasePage {
-    AddressFactory addressFactory;
 
     @FindBy(name = "address1")
     private WebElement addressInput;
@@ -26,12 +22,9 @@ public class NewAddressPage extends BasePage {
 
     public NewAddressPage(WebDriver driver) {
         super(driver);
-        addressFactory = new AddressFactory();
     }
 
-    public void addNewAddress(String countryName) {
-        Address newAddress = addressFactory.getRandomAddress();
-
+    public void addNewAddress(Address newAddress, String countryName) {
         addressInput.sendKeys(newAddress.getAddress());
         cityInput.sendKeys(newAddress.getCity());
         postcodeInput.sendKeys(newAddress.getPostcode());
@@ -45,4 +38,15 @@ public class NewAddressPage extends BasePage {
         Select select = new Select(countryDropdown);
         select.selectByVisibleText(countryName);
     }
+
+
+    // TODO: CHODZI O TAKĄ ZMIANĘ?
+    /*
+
+     private void selectVisibleText(WebElement element, String text) {
+        Select select = new Select(element);
+        select.selectByVisibleText(text);
+    }
+
+     */
 }

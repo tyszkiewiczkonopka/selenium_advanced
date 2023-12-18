@@ -2,11 +2,11 @@ package tests.categories;
 
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
-import pages.CategoryPage;
-import pages.components.filters.FilterPriceRangeComponent;
-import pages.components.filters.FiltersSideMenuComponent;
+import pages.categories.category.CategoryPage;
+import pages.categories.filters.FilterPriceRangeComponent;
+import pages.categories.filters.FiltersSideMenuComponent;
 import providers.UrlProvider;
-import tests.BaseTest;
+import tests.base.BaseTest;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -16,7 +16,7 @@ public class FiltersTest extends BaseTest {
 
     @Test
     public void price_filter_should_show_products_within_price_range() {
-        BaseTest.driver.get(UrlProvider.CATEGORY_ACCESSORIES);
+        driver.get(UrlProvider.CATEGORY_ACCESSORIES);
         int initialNumberOfProducts = at(CategoryPage.class).getNumberOfProductMiniaturesDisplayed();
 
         Double minTargetPrice = 13.00;

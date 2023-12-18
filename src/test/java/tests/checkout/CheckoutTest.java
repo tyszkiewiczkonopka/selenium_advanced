@@ -1,17 +1,18 @@
 package tests.checkout;
 
 import lombok.extern.slf4j.Slf4j;
-import models.UserFactory;
+import models.address.Address;
+import models.address.AddressFactory;
 import org.junit.jupiter.api.Test;
-import pages.LoginPage;
-import pages.OrderConfirmationPage;
+import pages.login.LoginPage;
+import pages.order.OrderConfirmationPage;
 import pages.account.OrderSummaryPage;
 import pages.account.OrdersHistoryPage;
 import pages.account.PlacedOrderDetailsPage;
-import pages.components.ProductMiniatureComponent;
-import pages.components.cart.CartPopupComponent;
+import pages.common.productMiniature.ProductMiniatureComponent;
+import pages.cart.CartPopupComponent;
 import providers.UrlProvider;
-import tests.BaseTest;
+import tests.base.BaseTest;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -21,8 +22,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 @Slf4j
 public class CheckoutTest extends BaseTest {
-    UserFactory userFactory;
-
+    AddressFactory addressFactory = new AddressFactory();
     OrderConfirmationPage orderConfirmationPage = at(OrderConfirmationPage.class);
     PlacedOrderDetailsPage placedOrderDetailsPage = at(PlacedOrderDetailsPage.class);
 
@@ -37,15 +37,18 @@ public class CheckoutTest extends BaseTest {
         at(CartPopupComponent.class)
                 .proceedToCheckout()
                 .proceedToCheckout();
+
+        Address newAddress = addressFactory.getRandomAddress();
+
         at(OrderSummaryPage.class)
-                .addDifferentBillingAddress("Poland")
+                .addDifferentBillingAddress(newAddress, "Poland")
                 .selectShippingMethod()
                 .selectPaymentMethod()
                 .placeOrder();
 
 
         String expectedOrderReference = orderConfirmationPage.extractOrderReference();
-        BigDecimal expectedTotalPrice = orderConfirmationPage.getPrice(orderConfirmationPage.getOrderTotalLabel());
+        BigDecimal expectedTotalPrice = orderConfirmationPage.getOrderTotal();
         String expectedOrderStatus = "Awaiting check payment";
 
         driver.get(UrlProvider.ORDER_HISTORY_AND_DETAILS);
@@ -58,30 +61,30 @@ public class CheckoutTest extends BaseTest {
     }
 
     private void login() {
-        BaseTest.driver.get(UrlProvider.LOGIN);
-        userFactory = new UserFactory();
+        driver.get(UrlProvider.LOGIN);
         at(LoginPage.class).loginAsRegisteredUser();
     }
 
     private void assertOrderDateIsToday() {
         String today = String.valueOf(LocalDate.now());
-        String orderDate = placedOrderDetailsPage.getText(placedOrderDetailsPage.getOrderDateLabel());
-        LocalDate parsedDate = LocalDate.parse(orderDate, DateTimeFormatter.ofPattern("MM/dd/yyyy"));
+        String orderDate = placedOrderDetailsPage.getOrderDate();
+        LocalDate parsedDate = LocalDate.parse(orderDate, DateTimeFormatter.ofPattern("MM/dd/yyyy")); // TODO: to też do Base któregoś?
+
         assertThat(parsedDate).isEqualTo(today);
         log.info("Actual date: " + today + ". Expected date: " + parsedDate);
     }
 
     private void assertTotalPrice(BigDecimal expectedTotalPrice) {
-        BigDecimal totalPriceFromOrderHistory = placedOrderDetailsPage.getPrice(placedOrderDetailsPage.getOrderTotalLabel());
+        BigDecimal totalPriceFromOrderHistory = placedOrderDetailsPage.getOrderTotal();
+
         assertThat(totalPriceFromOrderHistory).isEqualTo(expectedTotalPrice);
         log.info("Actual total price: " + totalPriceFromOrderHistory + ". Expected total price: " + expectedTotalPrice);
-
     }
 
     private void assertOrderStatus(String expectedOrderStatus) {
-        assertThat(placedOrderDetailsPage.getText(placedOrderDetailsPage.getOrderStatusLabel()))
-                .isEqualTo(expectedOrderStatus);
+        String actualOrderStatus = placedOrderDetailsPage.getOrderStatus();
 
-        log.info("Actual order status: " + placedOrderDetailsPage.getOrderStatusLabel() + ". Expected order status: " + expectedOrderStatus);
+        assertThat(actualOrderStatus).isEqualTo(expectedOrderStatus);
+        log.info("Actual order status: " + actualOrderStatus + ". Expected order status: " + expectedOrderStatus);
     }
 }
