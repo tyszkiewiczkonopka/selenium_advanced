@@ -7,7 +7,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import pages.base.BasePage;
 import pages.order.OrderConfirmationPage;
-import providers.UrlProvider;
+import providers.url.UrlProvider;
 
 
 public class OrderSummaryPage extends BasePage {

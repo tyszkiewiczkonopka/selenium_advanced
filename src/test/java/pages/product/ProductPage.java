@@ -2,7 +2,7 @@ package pages.product;
 
 import lombok.extern.slf4j.Slf4j;
 import models.cart.CartLine;
-import models.cart.CartLineQuerable;
+import models.cart.CartLineQueryable;
 import models.product.Product;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -13,7 +13,7 @@ import java.math.BigDecimal;
 import java.util.Random;
 
 @Slf4j
-public class ProductPage extends BasePage implements CartLineQuerable {
+public class ProductPage extends BasePage implements CartLineQueryable {
     @FindBy(css = ".qty #quantity_wanted")
     private WebElement quantityInput;
     @FindBy(css = ".btn.add-to-cart")
@@ -55,7 +55,7 @@ public class ProductPage extends BasePage implements CartLineQuerable {
     }
 
     public BigDecimal getProductPrice() {
-       return getPrice(priceLabel);
+        return getPrice(priceLabel);
     }
 }
 

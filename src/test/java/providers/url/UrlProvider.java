@@ -1,4 +1,4 @@
-package providers;
+package providers.url;
 
 public class UrlProvider {
 

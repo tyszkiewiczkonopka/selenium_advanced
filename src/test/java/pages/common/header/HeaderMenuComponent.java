@@ -11,6 +11,7 @@ import pages.base.BasePage;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
+import java.util.stream.Collectors;
 
 @Slf4j
 public class HeaderMenuComponent extends BasePage {
@@ -38,12 +39,9 @@ public class HeaderMenuComponent extends BasePage {
 
 
     public List<String> getAllCategoryNames() {
-        List<String> categoryNames = new ArrayList<>();
-        for (WebElement categoryName : menuCategories) {
-            String categoryNameText = categoryName.getText().toUpperCase();
-            categoryNames.add(categoryNameText);
-        }
-        return categoryNames;
+        return menuCategories.stream()
+                .map(categoryName -> categoryName.getText().toUpperCase())
+                .collect(Collectors.toList());
     }
 
     public void chooseMenuCategory(String categoryName) {

@@ -9,6 +9,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Optional;
 
+// TODO: combine below reader and UserYamlReader into a single one
 public class DriverYamlReader {
     private static final String CONFIGURATION_FILE_PATH = "src/test/resources/configuration.yml";
 

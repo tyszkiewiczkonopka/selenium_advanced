@@ -29,11 +29,9 @@ public class Cart {
     }
 
     public BigDecimal calculateTotal(List<CartLine> products) {
-        BigDecimal total = BigDecimal.ZERO;
-        for (CartLine cartLine : products) {
-            total = total.add(cartLine.getTotalPrice());
-        }
-        return total;
+        return products.stream()
+                .map(CartLine::getTotalPrice)
+                .reduce(BigDecimal.ZERO, BigDecimal::add);
     }
 
     public void removeFirstCartLine() {

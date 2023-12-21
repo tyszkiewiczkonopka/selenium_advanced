@@ -1,11 +1,11 @@
 package pages.account;
 
-import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import pages.base.BasePage;
+import pages.exceptions.OrderReferenceNotFoundException;
 
 import java.util.List;
 
@@ -30,7 +30,7 @@ public class OrdersHistoryPage extends BasePage {
             }
         }
         log.info("No row found for order: " + orderReference);
-        return new PlacedOrderDetailsPage(driver);
+        throw new OrderReferenceNotFoundException(orderReference);
     }
-
 }
+

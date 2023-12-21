@@ -8,7 +8,7 @@ import org.openqa.selenium.WebElement;
 import pages.categories.category.CategoryPage;
 import pages.categories.filters.FiltersSideMenuComponent;
 import pages.common.header.HeaderMenuComponent;
-import providers.UrlProvider;
+import providers.url.UrlProvider;
 import tests.base.BaseTest;
 
 import java.util.List;
@@ -18,13 +18,11 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @Slf4j
 public class CategoriesTest extends BaseTest {
-    HeaderMenuComponent headerMenu = at(HeaderMenuComponent.class);
-    CategoryPage categoryPage = at(CategoryPage.class);
 
     @Test
     void category_names_should_be_displayed_after_entering_through_menu() {
         driver.get(UrlProvider.APP);
-        List<String> menuCategories = headerMenu.getAllCategoryNames();
+        List<String> menuCategories = at(HeaderMenuComponent.class).getAllCategoryNames();
 
         for (String category : menuCategories) {
             log.info(">>>>> Starting test for category: " + category);
@@ -37,7 +35,7 @@ public class CategoriesTest extends BaseTest {
     @Test
     void subcategory_names_should_be_displayed_after_entering_through_menu() {
         driver.get(UrlProvider.APP);
-        List<String> menuCategoryIds = headerMenu.getAllCategoryIds();
+        List<String> menuCategoryIds = at(HeaderMenuComponent.class).getAllCategoryIds();
 
         SoftAssertions softAssertions = new SoftAssertions();
         softAssertions.assertThat(menuCategoryIds).isNotEmpty();
@@ -45,9 +43,9 @@ public class CategoriesTest extends BaseTest {
         for (String categoryId : menuCategoryIds) {
             WebElement category = driver.findElement(By.id(categoryId));
             log.info(">>>>> Starting test for category: " + category.getText());
-            headerMenu.hoverOverMenuCategory(category);
+            at(HeaderMenuComponent.class).hoverOverMenuCategory(category);
 
-            List<String> subcategoryIds = headerMenu.getSubcategoryIds(category);
+            List<String> subcategoryIds = at(HeaderMenuComponent.class).getSubcategoryIds(category);
 
             if (subcategoryIds.isEmpty()) {
                 log.info("No subcategories found for category: " + category.getText());
@@ -56,14 +54,14 @@ public class CategoriesTest extends BaseTest {
 
             for (String subcategoryId : subcategoryIds) {
                 category = driver.findElement(By.id(categoryId));
-                headerMenu.hoverOverMenuCategory(category);
+                at(HeaderMenuComponent.class).hoverOverMenuCategory(category);
 
                 WebElement subcategory = driver.findElement(By.id(subcategoryId));
                 String expectedSubcategory = subcategory.getText();
                 log.info(">>>>> Starting test for subcategory: " + expectedSubcategory);
 
                 subcategory.click();
-                String actualSubcategory = categoryPage.getOpenedCategoryTitle().toUpperCase();
+                String actualSubcategory = at(CategoryPage.class).getOpenedCategoryTitle().toUpperCase();
 
                 softAssertions.assertThat(expectedSubcategory).isEqualTo(actualSubcategory);
                 log.info("Expected category name: {}, Actual category name: {}", expectedSubcategory, actualSubcategory);
@@ -78,8 +76,8 @@ public class CategoriesTest extends BaseTest {
 
 
     private void assertCategoryName(String category) {
-        headerMenu.chooseMenuCategory(category);
-        String actualCategory = categoryPage.getOpenedCategoryTitle().toUpperCase();
+        at(HeaderMenuComponent.class).chooseMenuCategory(category);
+        String actualCategory = at(CategoryPage.class).getOpenedCategoryTitle().toUpperCase();
 
         assertThat(category).isEqualTo(actualCategory);
 
@@ -91,8 +89,8 @@ public class CategoriesTest extends BaseTest {
     }
 
     private void assertNumberOfProducts() {
-        int totalNumberOfProducts = categoryPage.getProductCount();
-        int numberOfProductMiniatures = categoryPage.getNumberOfProductMiniaturesDisplayed();
+        int totalNumberOfProducts = at(CategoryPage.class).getProductCount();
+        int numberOfProductMiniatures = at(CategoryPage.class).getNumberOfProductMiniaturesDisplayed();
 
         log.info("Total number of products: " + totalNumberOfProducts + ". Number of product miniatures: " + numberOfProductMiniatures);
 

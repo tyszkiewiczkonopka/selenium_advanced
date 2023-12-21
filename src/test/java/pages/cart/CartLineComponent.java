@@ -1,22 +1,16 @@
 package pages.cart;
 
-import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 import models.cart.CartLine;
-import models.cart.CartLineQuerable;
+import models.cart.CartLineQueryable;
 import models.product.Product;
-import org.openqa.selenium.By;
-import org.openqa.selenium.SearchContext;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
 import pages.base.BasePage;
 
-import java.util.List;
-
 @Slf4j
-public class CartLineComponent extends BasePage implements CartLineQuerable {
+public class CartLineComponent extends BasePage implements CartLineQueryable {
     @FindBy(css = ".product-line-info")
     private WebElement productNameLabel;
     @FindBy(css = ".product-price .current-price")
@@ -35,14 +29,8 @@ public class CartLineComponent extends BasePage implements CartLineQuerable {
     public CartLine toCartLine() {
         return new CartLine(
                 new Product(productNameLabel.getText(), getPrice(productPriceLabel)),
-                Integer.parseInt(quantityInput.getAttribute("value"))
+                getInputValueAsInt(quantityInput)
         );
     }
-
-    // TODO: CHODZI O TAKĄ ZMIANĘ?
-    public int getInputValueAsInt(WebElement inputElement){
-        return Integer.parseInt(inputElement.getAttribute("value"));
-    }
-
 
 }

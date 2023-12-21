@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 import pages.home.HomePage;
 import pages.search.SearchResultsPage;
 import pages.common.header.SearchInputComponent;
-import providers.UrlProvider;
+import providers.url.UrlProvider;
 import tests.base.BaseTest;
 
 import java.util.List;

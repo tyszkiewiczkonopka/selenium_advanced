@@ -2,24 +2,21 @@ package tests.base;
 
 import configuration.driver.DriverFactory;
 import lombok.SneakyThrows;
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import pages.base.BasePage;
 
-import java.time.Duration;
-
 public class BaseTest {
-    protected static WebDriver driver;
-    @BeforeAll
-    public static void setUp() {
+    protected WebDriver driver;
+    @BeforeEach
+    public void setUp() {
         driver = DriverFactory.createDriver();
         driver.manage().window().maximize();
     }
 
-    @AfterAll
-    public static void tearDown() {
+    @AfterEach
+    public void tearDown() {
         driver.quit();
     }
 

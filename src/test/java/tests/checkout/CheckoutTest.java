@@ -11,7 +11,7 @@ import pages.account.OrdersHistoryPage;
 import pages.account.PlacedOrderDetailsPage;
 import pages.common.productMiniature.ProductMiniatureComponent;
 import pages.cart.CartPopupComponent;
-import providers.UrlProvider;
+import providers.url.UrlProvider;
 import tests.base.BaseTest;
 
 import java.math.BigDecimal;
@@ -23,8 +23,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 @Slf4j
 public class CheckoutTest extends BaseTest {
     AddressFactory addressFactory = new AddressFactory();
-    OrderConfirmationPage orderConfirmationPage = at(OrderConfirmationPage.class);
-    PlacedOrderDetailsPage placedOrderDetailsPage = at(PlacedOrderDetailsPage.class);
 
     @Test
     void order_details_from_order_should_match_details_in_order_history() {
@@ -46,14 +44,12 @@ public class CheckoutTest extends BaseTest {
                 .selectPaymentMethod()
                 .placeOrder();
 
-
-        String expectedOrderReference = orderConfirmationPage.extractOrderReference();
-        BigDecimal expectedTotalPrice = orderConfirmationPage.getOrderTotal();
+        String expectedOrderReference = at(OrderConfirmationPage.class).extractOrderReference();
+        BigDecimal expectedTotalPrice = at(OrderConfirmationPage.class).getOrderTotal();
         String expectedOrderStatus = "Awaiting check payment";
 
         driver.get(UrlProvider.ORDER_HISTORY_AND_DETAILS);
-        at(OrdersHistoryPage.class)
-                .openOrderDetails(expectedOrderReference);
+        at(OrdersHistoryPage.class).openOrderDetails(expectedOrderReference);
 
         assertOrderDateIsToday();
         assertTotalPrice(expectedTotalPrice);
@@ -67,22 +63,22 @@ public class CheckoutTest extends BaseTest {
 
     private void assertOrderDateIsToday() {
         String today = String.valueOf(LocalDate.now());
-        String orderDate = placedOrderDetailsPage.getOrderDate();
-        LocalDate parsedDate = LocalDate.parse(orderDate, DateTimeFormatter.ofPattern("MM/dd/yyyy")); // TODO: to też do Base któregoś?
+        String orderDate = at(PlacedOrderDetailsPage.class).getOrderDate();
+        LocalDate parsedDate = LocalDate.parse(orderDate, DateTimeFormatter.ofPattern("MM/dd/yyyy"));
 
         assertThat(parsedDate).isEqualTo(today);
         log.info("Actual date: " + today + ". Expected date: " + parsedDate);
     }
 
     private void assertTotalPrice(BigDecimal expectedTotalPrice) {
-        BigDecimal totalPriceFromOrderHistory = placedOrderDetailsPage.getOrderTotal();
+        BigDecimal totalPriceFromOrderHistory = at(PlacedOrderDetailsPage.class).getOrderTotal();
 
         assertThat(totalPriceFromOrderHistory).isEqualTo(expectedTotalPrice);
         log.info("Actual total price: " + totalPriceFromOrderHistory + ". Expected total price: " + expectedTotalPrice);
     }
 
     private void assertOrderStatus(String expectedOrderStatus) {
-        String actualOrderStatus = placedOrderDetailsPage.getOrderStatus();
+        String actualOrderStatus = at(PlacedOrderDetailsPage.class).getOrderStatus();
 
         assertThat(actualOrderStatus).isEqualTo(expectedOrderStatus);
         log.info("Actual order status: " + actualOrderStatus + ". Expected order status: " + expectedOrderStatus);

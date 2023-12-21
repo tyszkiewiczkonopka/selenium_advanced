@@ -10,6 +10,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import pages.account.OrderSummaryPage;
 import pages.base.BasePage;
 import pages.common.productMiniature.ProductMiniatureComponent;
+import pages.exceptions.NoCartLinesFoundException;
 import pages.home.HomePage;
 import pages.product.ProductPage;
 
@@ -46,6 +47,13 @@ public class CartPage extends BasePage {
     }
 
     public List<CartLine> getCartLines() {
+
+        List<WebElement> shoppingCartItems = getShoppingCartItems();
+
+        if (shoppingCartItems.isEmpty()) {
+            throw new NoCartLinesFoundException();
+        }
+
         return getShoppingCartItems().stream()
                 .map((WebElement element) -> {
                             CartLine cartLine = new CartLineComponent(driver, element).toCartLine();
@@ -65,6 +73,7 @@ public class CartPage extends BasePage {
     public void addRandomProductToCart(Cart cart) {
         String randomProductName = at(HomePage.class).getRandomProductName();
         int randomQuantity = at(ProductPage.class).generateRandomQuantity();
+
         CartLine expectedCartLine = at(ProductMiniatureComponent.class)
                 .openProductView(randomProductName)
                 .setQuantity(String.valueOf(randomQuantity))
@@ -88,10 +97,11 @@ public class CartPage extends BasePage {
         return getPrice(cartTotalLabel);
     }
 
-    public BigDecimal getShippingCost(){
+    public BigDecimal getShippingCost() {
         return getPrice(shippingCostLabel);
     }
-    public void clickTrashIcon(){
+
+    public void clickTrashIcon() {
         trashIcon.click();
     }
 }

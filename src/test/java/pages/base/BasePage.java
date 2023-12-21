@@ -8,6 +8,7 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.pagefactory.DefaultElementLocatorFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.math.BigDecimal;
@@ -47,6 +48,13 @@ public class BasePage {
 
     public void click(WebElement clickElement) {
         clickElement.click();
+    }
+    public void selectVisibleText(WebElement element, String text) {
+        Select select = new Select(element);
+        select.selectByVisibleText(text);
+    }
+    public int getInputValueAsInt(WebElement inputElement){
+        return Integer.parseInt(inputElement.getAttribute("value"));
     }
 
     @SneakyThrows

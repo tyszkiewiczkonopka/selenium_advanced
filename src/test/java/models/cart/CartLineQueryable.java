@@ -1,5 +1,5 @@
 package models.cart;
 
-public interface CartLineQuerable {
+public interface CartLineQueryable {
     CartLine toCartLine();
 }
