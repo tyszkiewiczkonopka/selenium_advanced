@@ -9,26 +9,14 @@ import pages.base.BasePage;
 import pages.product.ProductPage;
 
 import java.math.BigDecimal;
-import java.util.List;
 
 @Slf4j
 public class ProductMiniatureComponent extends BasePage {
     @FindBy(css = ".product-price-and-shipping")
     private WebElement productPriceLabel;
-    @FindBy(css = ".h3.product-title a")
-    private WebElement productTitle;
-    @FindBy(css = "article.product-miniature .quick-view")
-    private WebElement productQuickView;
-    @FindBy(css = "article.product-miniature img")
-    private WebElement productImage;
-    @FindBy(css = ".product")
-    private List<WebElement> productMiniatures;
+
     public ProductMiniatureComponent(WebDriver driver) {
         super(driver);
-    }
-
-    public List<WebElement> getAllMiniatures() {
-        return productMiniatures;
     }
 
     public ProductPage openProductView(String desiredProductName) {

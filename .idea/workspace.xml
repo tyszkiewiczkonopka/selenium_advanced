@@ -4,53 +4,26 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a3b19175-a19b-4249-b493-6ce9c5535abe" name="Changes" comment="Add models (Product, Cart, CartLine) and generic methods (at(), allSpinnersOff())">
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/configuration/driver/DriverYamlReader.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/models/user/UserYamlReader.java" afterDir="false" />
+    <list default="true" id="a3b19175-a19b-4249-b493-6ce9c5535abe" name="Changes" comment="Modify user factory to include already registered users (to be continued)">
+      <change afterPath="$PROJECT_DIR$/src/test/java/configuration/yaml/YamlConfigProvider.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Main.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/configuration/Browser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/configuration/browser/Browser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/configuration/BrowserType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/configuration/browser/BrowserType.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/configuration/Config.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/configuration/model/Config.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/configuration/DriverFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/configuration/driver/DriverFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/models/Address.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/models/address/Address.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/models/AddressFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/models/address/AddressFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/models/Cart.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/models/cart/Cart.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/models/CartLine.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/models/cart/CartLine.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/models/CartLineQuerable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/models/cart/CartLineQuerable.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/models/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/models/product/Product.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/models/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/models/user/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/models/UserFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/models/user/UserFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/pages/BasePage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/pages/base/BasePage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/pages/CartPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/pages/cart/CartPage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/pages/CategoryPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/pages/categories/category/CategoryPage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/pages/HomePage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/pages/home/HomePage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/pages/LoginPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/pages/login/LoginPage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/pages/OrderConfirmationPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/pages/order/OrderConfirmationPage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/pages/ProductPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/pages/product/ProductPage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/pages/SearchResultsPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/pages/search/SearchResultsPage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/pages/SignInPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/pages/login/SignInPage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/pages/account/NewAddressPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/pages/account/NewAddressPage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/pages/account/OrderSummaryPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/pages/account/OrderSummaryPage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/pages/account/OrdersHistoryPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/pages/account/OrdersHistoryPage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/pages/account/PlacedOrderDetailsPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/pages/account/PlacedOrderDetailsPage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/pages/components/ProductMiniatureComponent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/pages/common/productMiniature/ProductMiniatureComponent.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/pages/components/cart/CartLineComponent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/pages/cart/CartLineComponent.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/pages/components/cart/CartPopupComponent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/pages/cart/CartPopupComponent.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/pages/components/filters/FilterPriceRangeComponent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/pages/categories/filters/FilterPriceRangeComponent.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/pages/components/filters/FiltersSideMenuComponent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/pages/categories/filters/FiltersSideMenuComponent.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/pages/components/header/HeaderMenuComponent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/pages/common/header/HeaderMenuComponent.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/pages/components/header/MiniCartComponent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/pages/common/header/MiniCartComponent.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/pages/components/header/SearchInputComponent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/pages/common/header/SearchInputComponent.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/tests/BaseTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/tests/base/BaseTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/tests/cart/AddToCartTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/tests/cart/AddToCartTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/configuration/driver/DriverFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/configuration/driver/DriverFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/configuration/driver/DriverYamlReader.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/models/user/UserFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/models/user/UserFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/models/user/UserYamlReader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/configuration/yaml/YamlConfigReader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/pages/cart/CartLineComponent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/pages/cart/CartLineComponent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/pages/cart/CartPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/pages/cart/CartPage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/pages/cart/CartPopupComponent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/pages/cart/CartPopupComponent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/pages/common/header/HeaderMenuComponent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/pages/common/header/HeaderMenuComponent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/pages/common/header/SearchInputComponent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/pages/common/header/SearchInputComponent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/pages/common/productMiniature/ProductMiniatureComponent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/pages/common/productMiniature/ProductMiniatureComponent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/pages/login/LoginPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/pages/login/LoginPage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/pages/search/SearchResultsPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/pages/search/SearchResultsPage.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/tests/cart/CartPopupTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/tests/cart/CartPopupTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/tests/cart/RemoveProductsFromCartTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/tests/cart/RemoveProductsFromCartTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/tests/categories/CategoriesTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/tests/categories/CategoriesTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/tests/categories/FiltersTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/tests/categories/FiltersTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/tests/checkout/CheckoutTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/tests/checkout/CheckoutTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/tests/search/SearchTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/tests/search/SearchTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -61,15 +34,22 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Enum" />
+        <option value="Interface" />
         <option value="Class" />
       </list>
     </option>
+  </component>
+  <component name="FormatOnSaveOptions">
+    <option name="myRunOnSave" value="true" />
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
+  </component>
+  <component name="OptimizeOnSaveOptions">
+    <option name="myRunOnSave" value="true" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 1
@@ -80,22 +60,38 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/mtyszkiewicz/IdeaProjects/selenium_advanced/src/test/resources&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "git-widget-placeholder": "master",
+    "last_opened_file_path": "C:/Users/mtyszkiewicz/IdeaProjects/selenium_advanced/src/test/resources",
+    "settings.editor.selected.configurable": "preferences.general"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\mtyszkiewicz\IdeaProjects\selenium_advanced\src\test\resources" />
     </key>
   </component>
   <component name="RunManager" selected="JUnit.CategoriesTest">
+    <configuration name="CartPopupTest.product_added_to_the_cart_should_have_the_same_data_in_popup_summary_as_on_product_page" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="selenium_advanced" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="tests.cart.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="tests.cart" />
+      <option name="MAIN_CLASS_NAME" value="tests.cart.CartPopupTest" />
+      <option name="METHOD_NAME" value="product_added_to_the_cart_should_have_the_same_data_in_popup_summary_as_on_product_page" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="CategoriesTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="selenium_advanced" />
       <extension name="coverage">
@@ -107,6 +103,22 @@
       <option name="PACKAGE_NAME" value="tests.categories" />
       <option name="MAIN_CLASS_NAME" value="tests.categories.CategoriesTest" />
       <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="CategoriesTest.category_names_should_be_displayed_after_entering_through_menu" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="selenium_advanced" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="tests.categories.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="tests.categories" />
+      <option name="MAIN_CLASS_NAME" value="tests.categories.CategoriesTest" />
+      <option name="METHOD_NAME" value="category_names_should_be_displayed_after_entering_through_menu" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -127,49 +139,16 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="SearchTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="tests in selenium_advanced" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="selenium_advanced" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="tests.search.*" />
+          <option name="PATTERN" value="tests.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="tests.search" />
-      <option name="MAIN_CLASS_NAME" value="tests.search.SearchTest" />
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="SearchTest.randomly_chosen_product_should_be_found_by_its_name_in_search_results" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="selenium_advanced" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="tests.search.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="tests.search" />
-      <option name="MAIN_CLASS_NAME" value="tests.search.SearchTest" />
-      <option name="METHOD_NAME" value="randomly_chosen_product_should_be_found_by_its_name_in_search_results" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="SearchTest.test_written_into_search_field_should_be_found_among_dropdown_results" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="selenium_advanced" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="tests.search.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="tests.search" />
-      <option name="MAIN_CLASS_NAME" value="tests.search.SearchTest" />
-      <option name="METHOD_NAME" value="test_written_into_search_field_should_be_found_among_dropdown_results" />
-      <option name="TEST_OBJECT" value="method" />
+      <option name="PACKAGE_NAME" value="tests" />
+      <option name="TEST_OBJECT" value="package" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -178,9 +157,9 @@
       <list>
         <item itemvalue="JUnit.CategoriesTest" />
         <item itemvalue="JUnit.CategoriesTest.subcategory_names_should_be_displayed_after_entering_through_menu" />
-        <item itemvalue="JUnit.SearchTest.test_written_into_search_field_should_be_found_among_dropdown_results" />
-        <item itemvalue="JUnit.SearchTest" />
-        <item itemvalue="JUnit.SearchTest.randomly_chosen_product_should_be_found_by_its_name_in_search_results" />
+        <item itemvalue="JUnit.CategoriesTest.category_names_should_be_displayed_after_entering_through_menu" />
+        <item itemvalue="JUnit.CartPopupTest.product_added_to_the_cart_should_have_the_same_data_in_popup_summary_as_on_product_page" />
+        <item itemvalue="JUnit.tests in selenium_advanced" />
       </list>
     </recent_temporary>
   </component>
@@ -217,31 +196,36 @@
       <option name="project" value="LOCAL" />
       <updated>1701790833151</updated>
     </task>
-    <task id="LOCAL-00004" summary="Add checkout test (to be continued)">
-      <option name="closed" value="true" />
-      <created>1701874787915</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1701874787915</updated>
-    </task>
-    <task id="LOCAL-00005" summary="Add generic test (to be continued)">
-      <option name="closed" value="true" />
-      <created>1701961961820</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1701961961820</updated>
-    </task>
-    <option name="localTasksCounter" value="6" />
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Add test for &quot;Product successfully added to your shopping cart&quot;" />
     <MESSAGE value="Refactor after encountering error while testing the 'Product successfully added to your shopping cart test'" />
     <MESSAGE value="Modify user factory to include already registered users (to be continued)" />
-    <MESSAGE value="Add checkout test (to be continued)" />
-    <MESSAGE value="Add generic test (to be continued)" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add generic test (to be continued)" />
+    <option name="LAST_COMMIT_MESSAGE" value="Modify user factory to include already registered users (to be continued)" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/test/java/tests/LoginTest.java</url>
+          <line>70</line>
+          <option name="timeStamp" value="11" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/test/java/pages/common/header/HeaderMenuComponent.java</url>
+          <line>64</line>
+          <properties>
+            <option name="lambda-ordinal" value="-1" />
+          </properties>
+          <option name="timeStamp" value="16" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
 </project>

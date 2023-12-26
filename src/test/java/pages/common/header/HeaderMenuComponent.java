@@ -1,6 +1,5 @@
 package pages.common.header;
 
-import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -8,7 +7,6 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import pages.base.BasePage;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.stream.Collectors;
@@ -29,12 +27,30 @@ public class HeaderMenuComponent extends BasePage {
                 .toList();
     }
 
-    public List<String> getSubcategoryIds(WebElement category) {
+    public List<String> getSubcategoryIds(String categoryId) {
+        WebElement category = driver.findElement(By.id(categoryId));
+
+        log.info(">>>>> Category: " + category.getText());
+        hoverOverMenuCategory(category);
+
         return category
                 .findElements(By.cssSelector(".category"))
                 .stream()
                 .map((subcategory) -> subcategory.getAttribute("id"))
                 .toList();
+    }
+
+    public String getSubcategoryNameAndOpen(String categoryId, String subcategoryId) {
+        WebElement category = driver.findElement(By.id(categoryId));
+
+        log.info(">>>>> Category (subcategories): " + category.getText());
+        hoverOverMenuCategory(category);
+
+        WebElement subcategory = driver.findElement(By.id(subcategoryId));
+        String subcategoryName = subcategory.getText();
+        subcategory.click();
+
+        return subcategoryName;
     }
 
 
@@ -55,5 +71,4 @@ public class HeaderMenuComponent extends BasePage {
     public void hoverOverMenuCategory(WebElement menuCategory) {
         actions.moveToElement(menuCategory).build().perform();
     }
-
 }

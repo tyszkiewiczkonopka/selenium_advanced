@@ -1,6 +1,5 @@
 package pages.login;
 
-import lombok.Getter;
 import models.user.User;
 import models.user.UserFactory;
 import org.openqa.selenium.WebDriver;
@@ -20,12 +19,6 @@ public class LoginPage extends BasePage {
 
     public LoginPage(WebDriver driver) {
         super(driver);
-    }
-
-    public void login(String email, String password) {
-        emailInput.sendKeys(email);
-        passwordInput.sendKeys(password);
-        signInButton.click();
     }
 
     public void loginAsRegisteredUser() {

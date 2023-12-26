@@ -17,9 +17,6 @@ public class CartLineComponent extends BasePage implements CartLineQueryable {
     private WebElement productPriceLabel;
     @FindBy(css = ".js-cart-line-product-quantity")
     private WebElement quantityInput;
-    @FindBy(css = ".col-md-6.col-xs-2.price .product-price")
-    private WebElement totalProductPriceLabel;
-
 
     public CartLineComponent(WebDriver driver, WebElement lineElement) {
         super(driver, lineElement);

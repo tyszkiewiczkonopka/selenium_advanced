@@ -3,8 +3,6 @@ package tests.cart;
 import lombok.extern.slf4j.Slf4j;
 import models.cart.Cart;
 import org.junit.jupiter.api.Test;
-import org.openqa.selenium.By;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import pages.cart.CartPage;
 import providers.url.UrlProvider;
@@ -37,8 +35,8 @@ public class RemoveProductsFromCartTest extends BaseTest {
         assertTotalValuesAndProductCount(newCartTotal);
         removeProductLine(cart);
 
-        assertThat(at(CartPage.class).getEmptyCartLabel().getText()).isEqualTo("There are no more items in your cart");
-        log.info("Number of products on Cart Page: " + at(CartPage.class).getCartLines().size());
+        assertThat(at(CartPage.class).getEmptyCartLabelText())
+                .isEqualTo("There are no more items in your cart");
     }
 
     public void assertTotalValuesAndProductCount(BigDecimal cartTotal) {
@@ -59,11 +57,10 @@ public class RemoveProductsFromCartTest extends BaseTest {
         cart.removeFirstCartLine();
 
         if (productLinesInCart > 1) {
-            wait.until(ExpectedConditions.numberOfElementsToBe(By.cssSelector(".cart-item"), productLinesInCart - 1));
+            at(CartPage.class).waitForNumberOfElementsToBeMinusOne(productLinesInCart);
         } else {
-            wait.until(ExpectedConditions.textToBePresentInElement(at(CartPage.class).getEmptyCartLabel(), "There are no more items in your cart"));
+            at(CartPage.class).waitUntilEmptyCartLabelAppears();
         }
-
     }
 }
 

@@ -1,17 +1,13 @@
 package pages.cart;
 
-import lombok.Getter;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import pages.base.BasePage;
-import pages.cart.CartPage;
 
 import java.math.BigDecimal;
-import java.time.Duration;
 
 public class CartPopupComponent extends BasePage {
     @FindBy(css = ".modal.fade.in .h6.product-name")
@@ -44,9 +40,14 @@ public class CartPopupComponent extends BasePage {
     }
 
     public CartPage proceedToCheckout() {
-        defaultWait.until(ExpectedConditions.attributeContains(By.id("blockcart-modal"), "class", "modal fade in"));
+        waitUntilModalFadesIn();
         proceedToCheckoutButton.click();
         return new CartPage(driver);
+    }
+
+    public void waitUntilModalFadesIn() {
+        defaultWait.until(ExpectedConditions.attributeContains(By.id("blockcart-modal"), "class", "modal fade in"));
+
     }
 
     public BigDecimal getAllProductsPrice() {

@@ -7,8 +7,8 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import pages.base.BasePage;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Slf4j
 public class SearchInputComponent extends BasePage {
@@ -38,15 +38,11 @@ public class SearchInputComponent extends BasePage {
     }
 
     public List<String> getSearchResultsDropdown() {
-        List<String> dropdownResults = new ArrayList<>();
-
         defaultWait.until(ExpectedConditions.visibilityOf(searchResultsDropdown));
 
-        for (WebElement result : searchResults) {
-            String searchedText = result.getText();
-            dropdownResults.add(searchedText);
-        }
-        return dropdownResults;
+        return searchResults.stream()
+                .map(WebElement::getText)
+                .collect(Collectors.toList());
     }
 
 }

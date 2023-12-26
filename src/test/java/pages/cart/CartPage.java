@@ -3,6 +3,7 @@ package pages.cart;
 import lombok.extern.slf4j.Slf4j;
 import models.cart.Cart;
 import models.cart.CartLine;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -21,12 +22,6 @@ import java.util.List;
 public class CartPage extends BasePage {
     @FindBy(css = ".cart-item")
     private List<WebElement> shoppingCartItems;
-    @FindBy(css = ".cart-items")
-    private WebElement cartItemsList;
-    @FindBy(css = ".product-line-info a.label")
-    private WebElement cartItem;
-    @FindBy(css = ".js-cart-line-product-quantity")
-    private WebElement quantityInput;
     @FindBy(css = ".cart-summary a")
     private WebElement proceedToCheckoutButton;
     @FindBy(css = ".cart-total .value")
@@ -93,6 +88,10 @@ public class CartPage extends BasePage {
         return emptyCartLabel;
     }
 
+    public String getEmptyCartLabelText() {
+        return emptyCartLabel.getText();
+    }
+
     public BigDecimal getCartTotal() {
         return getPrice(cartTotalLabel);
     }
@@ -103,5 +102,14 @@ public class CartPage extends BasePage {
 
     public void clickTrashIcon() {
         trashIcon.click();
+    }
+
+    public void waitForNumberOfElementsToBeMinusOne(int productLinesInCart) {
+        defaultWait.until(ExpectedConditions.numberOfElementsToBe(By.cssSelector(".cart-item"), productLinesInCart - 1));
+    }
+
+    public void waitUntilEmptyCartLabelAppears() {
+        defaultWait.until(ExpectedConditions.textToBePresentInElement(getEmptyCartLabel(),
+                "There are no more items in your cart"));
     }
 }

@@ -7,7 +7,6 @@ import org.openqa.selenium.support.FindBy;
 import pages.base.BasePage;
 import pages.home.HomePage;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Slf4j
@@ -21,13 +20,8 @@ public class SearchResultsPage extends BasePage {
     }
 
     public List<String> getSearchResults() {
-        List<String> matchingResults = new ArrayList<>();
-
-        for (WebElement searchResult : products) {
-            String resultText = at(HomePage.class).getProductName(searchResult);
-            matchingResults.add(resultText);
-        }
-        return matchingResults;
+        HomePage homePage = at(HomePage.class);
+        return products.stream().map(homePage::getProductName).toList();
     }
 
 }

@@ -3,18 +3,14 @@ package tests.cart;
 import lombok.extern.slf4j.Slf4j;
 import models.cart.Cart;
 import org.junit.jupiter.api.Test;
-import org.openqa.selenium.By;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-import pages.product.ProductPage;
-import pages.common.productMiniature.ProductMiniatureComponent;
 import pages.cart.CartPopupComponent;
 import pages.common.header.MiniCartComponent;
+import pages.common.productMiniature.ProductMiniatureComponent;
+import pages.product.ProductPage;
 import providers.url.UrlProvider;
 import tests.base.BaseTest;
 
 import java.math.BigDecimal;
-import java.time.Duration;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -34,16 +30,16 @@ public class CartPopupTest extends BaseTest {
         cart.addCartLine(desiredProduct.toCartLine());
         at(ProductPage.class).addProduct();
 
-        verifyProductNameInPopup(desiredProductName);
-        verifyProductPriceInPopup(expectedProductPrice);
-        verifyProductsTotalPrice(expectedProductPrice, expectedProductQuantity);
-        verifyProductQuantityInPopup(expectedProductQuantity);
-        verifyCartItemCountInPopup(expectedProductQuantity);
-        verifyMiniCartProductsQuantity(expectedProductQuantity);
+        assertProductNameInPopup(desiredProductName);
+        assertProductPriceInPopup(expectedProductPrice);
+        assertProductsTotalPrice(expectedProductPrice, expectedProductQuantity);
+        assertProductQuantityInPopup(expectedProductQuantity);
+        assertCartItemCountInPopup(expectedProductQuantity);
+        assertMiniCartProductsQuantity(expectedProductQuantity);
     }
 
 
-    private void verifyMiniCartProductsQuantity(int expectedProductQuantity) {
+    private void assertMiniCartProductsQuantity(int expectedProductQuantity) {
         String miniCartItemsNumber = at(MiniCartComponent.class).getCartItemsNumber();
 
         assertThat(miniCartItemsNumber).isEqualTo(String.valueOf(expectedProductQuantity));
@@ -52,7 +48,7 @@ public class CartPopupTest extends BaseTest {
         log.info("***********************************************************");
     }
 
-    private void verifyProductsTotalPrice(BigDecimal price, int quantity) {
+    private void assertProductsTotalPrice(BigDecimal price, int quantity) {
         BigDecimal actualTotalPrice = at(CartPopupComponent.class).getAllProductsPrice();
         BigDecimal expectedTotalPrice = price.multiply(new BigDecimal(quantity));
 
@@ -62,7 +58,7 @@ public class CartPopupTest extends BaseTest {
         log.info("***********************************************************");
     }
 
-    private void verifyCartItemCountInPopup(int expectedProductQuantity) {
+    private void assertCartItemCountInPopup(int expectedProductQuantity) {
         int actualCartItemCount = at(CartPopupComponent.class).extractCartItemCount();
 
         assertThat(actualCartItemCount).isEqualTo(expectedProductQuantity);
@@ -71,7 +67,7 @@ public class CartPopupTest extends BaseTest {
         log.info("***********************************************************");
     }
 
-    private void verifyProductQuantityInPopup(int expectedProductQuantity) {
+    private void assertProductQuantityInPopup(int expectedProductQuantity) {
         int actualProductQuantity = at(CartPopupComponent.class).extractProductQuantity();
 
         assertThat(actualProductQuantity).isEqualTo(expectedProductQuantity);
@@ -80,7 +76,7 @@ public class CartPopupTest extends BaseTest {
         log.info("***********************************************************");
     }
 
-    private void verifyProductPriceInPopup(BigDecimal expectedProductPrice) {
+    private void assertProductPriceInPopup(BigDecimal expectedProductPrice) {
         BigDecimal actualProductPrice = at(CartPopupComponent.class).getProductPrice();
 
         assertThat(actualProductPrice).isEqualTo(expectedProductPrice);
@@ -89,9 +85,8 @@ public class CartPopupTest extends BaseTest {
         log.info("***********************************************************");
     }
 
-    private void verifyProductNameInPopup(String expectedProductName) {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        wait.until(ExpectedConditions.attributeContains(By.id("blockcart-modal"), "class", "modal fade in"));
+    private void assertProductNameInPopup(String expectedProductName) {
+        at(CartPopupComponent.class).waitUntilModalFadesIn();
         String actualProductName = at(CartPopupComponent.class).getProductName();
 
         assertThat(actualProductName).isEqualTo(expectedProductName);

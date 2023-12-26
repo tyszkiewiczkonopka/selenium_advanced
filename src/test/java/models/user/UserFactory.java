@@ -5,7 +5,7 @@ import com.github.javafaker.Faker;
 import java.util.List;
 import java.util.Random;
 
-import static models.user.UserYamlReader.loadUsersFromConfigFile;
+import static configuration.yaml.YamlConfigProvider.loadUsersFromConfigFile;
 
 public class UserFactory {
     private final List<User> registeredUsers;

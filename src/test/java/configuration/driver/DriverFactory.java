@@ -9,7 +9,8 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 
-import static configuration.driver.DriverYamlReader.getActiveBrowserFromConfigFile;
+import static configuration.yaml.YamlConfigProvider.getActiveBrowserFromConfigFile;
+
 
 public class DriverFactory {
 
